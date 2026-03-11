@@ -6,11 +6,12 @@ import ShareCard from "@/components/ShareCard";
 import type { ContentType } from "@/types/content";
 
 const CATEGORIES: { id: ContentType; label: string }[] = [
-  { id: "tips", label: "研发技巧" },
-  { id: "models", label: "大模型评测" },
-  { id: "tools", label: "工具推荐" },
+  { id: "tips", label: "技巧分享" },
+  { id: "problems", label: "问题与方案" },
+  { id: "tools", label: "工具" },
   { id: "editors", label: "AI 编辑器" },
-  { id: "team", label: "团队 AI 建设" },
+  { id: "models", label: "大模型评测" },
+  { id: "team", label: "团队分享" },
   { id: "dingtalk", label: "钉钉文档" },
 ];
 
@@ -29,7 +30,7 @@ export default async function KbPage({
   const items = allData[CATEGORIES.findIndex((c) => c.id === activeCat)];
 
   const renderItems = () => {
-    if (activeCat === "tips" || activeCat === "dingtalk") {
+    if (activeCat === "tips" || activeCat === "dingtalk" || activeCat === "problems") {
       return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {items.map((item) => (

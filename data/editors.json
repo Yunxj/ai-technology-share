@@ -12,7 +12,7 @@
     "id": "ed-2",
     "type": "editors",
     "title": "Claude Code",
-    "summary": "Cursor 内置 Claude，代码解释与生成表现优秀",
+    "summary": "Cursor 内置 Claude，代码解释与生成表现优秀；推荐配合 Claude-Mem 解决上下文记忆、Superpowers 强化工作流",
     "tags": ["Claude", "解释"],
     "updatedAt": "2026-02-20T00:00:00Z",
     "sourceType": "internal"

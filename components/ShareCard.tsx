@@ -47,5 +47,17 @@ export default function ShareCard({ item }: { item: ContentItem }) {
     );
   }
 
-  return <div className={cardClass}>{content}</div>;
+  if (item.internalHref) {
+    return (
+      <Link href={item.internalHref} className={cardClass}>
+        {content}
+      </Link>
+    );
+  }
+
+  return (
+    <Link href={`/kb/item/${item.id}`} className={cardClass}>
+      {content}
+    </Link>
+  );
 }

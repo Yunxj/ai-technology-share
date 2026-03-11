@@ -1,9 +1,10 @@
+import Link from "next/link";
 import { Code2 } from "lucide-react";
 import type { ContentItem } from "@/types/content";
 
 export default function EditorCard({ item }: { item: ContentItem }) {
-  return (
-    <div className="bg-white rounded-card p-5 border border-cardBorder hover:border-slate-300 hover:shadow-lg transition-all">
+  const content = (
+    <>
       <div className="font-bold text-base mb-2 flex items-center gap-2">
         <span className="w-8 h-8 rounded-lg bg-sky-50 text-sky-700 flex items-center justify-center">
           <Code2 className="w-4 h-4" />
@@ -21,6 +22,36 @@ export default function EditorCard({ item }: { item: ContentItem }) {
           </span>
         ))}
       </div>
-    </div>
+    </>
+  );
+
+  const cardClass =
+    "block bg-white rounded-card p-5 border border-cardBorder hover:border-slate-300 hover:shadow-lg transition-all text-inherit no-underline";
+
+  if (item.externalUrl) {
+    return (
+      <a
+        href={item.externalUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={cardClass}
+      >
+        {content}
+      </a>
+    );
+  }
+
+  if (item.internalHref) {
+    return (
+      <Link href={item.internalHref} className={cardClass}>
+        {content}
+      </Link>
+    );
+  }
+
+  return (
+    <Link href={`/kb/item/${item.id}`} className={cardClass}>
+      {content}
+    </Link>
   );
 }

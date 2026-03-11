@@ -5,12 +5,13 @@ import { ExternalLink } from "lucide-react";
 import type { ContentType } from "@/types/content";
 
 const TYPE_LABELS: Record<ContentType, string> = {
-  tips: "研发技巧",
-  models: "大模型",
+  tips: "技巧分享",
+  models: "大模型评测",
   tools: "工具",
-  editors: "AI编辑器",
+  editors: "AI 编辑器",
   team: "团队分享",
   dingtalk: "钉钉文档",
+  problems: "问题与方案",
 };
 
 export default async function SearchPage({
@@ -42,7 +43,6 @@ export default async function SearchPage({
         ) : (
           items.map((item) => {
             const isExternal = item.sourceType === "dingtalk" || !!item.externalUrl;
-            const href = isExternal && item.externalUrl ? item.externalUrl : "#";
 
             const card = (
               <div className="flex items-start gap-4 bg-white rounded-2xl p-5 border border-cardBorder hover:border-slate-300 transition-all">
@@ -77,8 +77,16 @@ export default async function SearchPage({
               );
             }
 
+            if (item.internalHref) {
+              return (
+                <Link key={item.id} href={item.internalHref}>
+                  {card}
+                </Link>
+              );
+            }
+
             return (
-              <Link key={item.id} href={`/kb?cat=${item.type}`}>
+              <Link key={item.id} href={`/kb/item/${item.id}`}>
                 {card}
               </Link>
             );

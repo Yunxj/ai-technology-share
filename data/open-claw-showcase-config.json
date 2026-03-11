@@ -1,0 +1,84 @@
+{
+  "title": "Open Claw 部署与养虾应用",
+  "subtitle": "个人助手的运用 — 部署专属 AI 助手，从定时推送到多 Agent 协同",
+  "author": "程云",
+  "status": "进行中",
+  "description": "将 Open Claw 部署到本地或云端，结合 RAG、LangChain、Dify 等技术栈，打造个人专属 AI 助手。从定时推送学习资料与资讯，到多角色 Agent 协同开发需求，逐步进阶。",
+  "primaryFeatures": [
+    "学习资料定时推送",
+    "收集资讯定时推送"
+  ],
+  "advancedUsage": "建立多个 Agent 角色（产品、UI、前端、后端、测试、运维），给需求，相互讨论完成需求开发",
+  "skillsExample": {
+    "label": "养虾 Skills 示例",
+    "description": "Skills 编写，设置边界，不断增强功能"
+  },
+  "highlights": [
+    "部署说明：本地/云端部署完整指南",
+    "初级功能：学习资料定时推送、收集资讯定时推送",
+    "高级用法：多 Agent 角色协同完成需求开发",
+    "Skills 示例：养虾场景 — 编写 Skills、设置边界、持续增强"
+  ],
+  "ctaHref": "/tools/open-claw",
+  "ctaText": "了解更多",
+  "currentFeatures": [
+    "学习资料定时推送",
+    "收集资讯定时推送",
+    "Skills 编写与边界设置",
+    "RAG、LangChain、Dify 技术栈支持"
+  ],
+  "futurePlan": [
+    "建立多 Agent 角色（产品、UI、前端、后端、测试、运维）协同开发",
+    "养虾场景 Skills 持续增强与能力边界扩展",
+    "飞书 + Python RAG 学习资料自动推送"
+  ],
+  "openClawDocs": [
+    {
+      "title": "Open Claw 官方文档（中文）",
+      "url": "https://docs.openclaw.ai/zh-CN"
+    },
+    {
+      "title": "OpenClaw 安装指南",
+      "url": "https://openclaws.io/zh/install/"
+    }
+  ],
+  "shrimpGuide": [
+    {
+      "title": "养虾 Skills 编写指南",
+      "url": "#",
+      "description": "Skills 编写，设置边界，不断增强功能"
+    }
+  ],
+  "relatedMaterials": [
+    {
+      "title": "OpenClaw 部署完全指南：打造你的 24/7 AI 私人助手",
+      "url": "https://www.joinlearn.com/blog/openclaw-deployment-guide",
+      "source": "快速部署"
+    },
+    {
+      "title": "OpenClaw 部署完整指南：本地 AI 助手安装、配置与上手全流程",
+      "url": "https://www.cnblogs.com/qiniushanghai/p/19663080",
+      "source": "七牛云"
+    },
+    {
+      "title": "玩转 OpenClaw：阿里云+本地部署+6大神级用法，10秒上手 AI Agent 助手",
+      "url": "https://developer.aliyun.com/article/1713540",
+      "source": "阿里云开发者社区"
+    },
+    {
+      "title": "现象级 OpenClaw 背后：「养虾」狂欢与安全担忧",
+      "url": "https://m.21jingji.com/article/20260310/6f0159082666fed8e1bb9858cc5798e7.html",
+      "source": "21财经 · 趋势"
+    },
+    {
+      "title": "OpenClaw 完全指南：部署你的 7×24 小时开源 AI 助手",
+      "url": "https://www.tencentcloud.com/techpedia/141458",
+      "source": "腾讯云"
+    },
+    {
+      "title": "awesome-openclaw-tutorial 教程集合",
+      "url": "https://github.com/xianyu110/awesome-openclaw-tutorial",
+      "source": "GitHub"
+    }
+  ]
+}

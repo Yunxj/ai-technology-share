@@ -10,6 +10,7 @@ import {
   Star,
   FileText,
   Megaphone,
+  HelpCircle,
 } from "lucide-react";
 
 const CONFIG_CARDS = [
@@ -54,6 +55,13 @@ const CONFIG_CARDS = [
     description: "新功能上线、更新日志",
     icon: Megaphone,
     href: "/admin/config/new-features",
+  },
+  {
+    key: "ai-qa",
+    title: "AI 问答精选",
+    description: "首页 AI 问答精选区域，问题列表与链接配置",
+    icon: HelpCircle,
+    href: "/admin/config/ai-qa",
   },
   {
     key: "about",

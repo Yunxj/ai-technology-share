@@ -10,7 +10,6 @@ import {
   Users,
   Lightbulb,
   Layout,
-  Wrench,
 } from "lucide-react";
 import ArticleCard from "@/components/ArticleCard";
 import EditorCard from "@/components/EditorCard";
@@ -21,6 +20,7 @@ import DataChart from "@/components/DataChart";
 import DesignFidelitySection from "@/components/DesignFidelitySection";
 import RoadmapTimeline from "@/components/RoadmapTimeline";
 import AiQaSection from "@/components/AiQaSection";
+import OpenClawShowcaseSection from "@/components/OpenClawShowcaseSection";
 import ActiveContributors from "@/components/ActiveContributors";
 import RdDynamicsSection from "@/components/RdDynamicsSection";
 import type { ContentItem } from "@/types/content";
@@ -35,9 +35,9 @@ import type { RoadmapConfig } from "@/types/roadmap-config";
 import type { AiQaConfig } from "@/types/ai-qa-config";
 import type { ContributorsConfig } from "@/types/contributors-config";
 import type { RdDynamicsConfig } from "@/types/rd-dynamics-config";
+import type { OpenClawShowcaseConfig } from "@/types/open-claw-showcase-config";
 
 const EDITORS = ["Cursor", "Claude Code", "Open Code", "Kiro", "Ollama", "Continue"];
-const TOOLS = ["MarkEdit", "Draw.io", "Dify", "LangChain"];
 
 const AI_TIPS = [
   { title: "提示词中加入\"让我们一步步思考\"", desc: "复杂任务推理能力提升30%" },
@@ -54,6 +54,7 @@ const ROLE_ICONS = {
 } as const;
 
 interface HomeContentProps {
+  allContent?: ContentItem[];
   team: ContentItem[];
   editors: ContentItem[];
   tipsWithDingtalk: ContentItem[];
@@ -71,6 +72,8 @@ interface HomeContentProps {
   aiQaConfig?: AiQaConfig | null;
   contributorsConfig?: ContributorsConfig | null;
   rdDynamicsConfig?: RdDynamicsConfig | null;
+  openClawShowcaseConfig?: OpenClawShowcaseConfig | null;
+  isLoggedIn?: boolean;
 }
 
 const ENTRY_LIMITS = {
@@ -80,6 +83,7 @@ const ENTRY_LIMITS = {
 } as const;
 
 export default function HomeContent({
+  allContent,
   team,
   editors,
   tipsWithDingtalk,
@@ -97,6 +101,8 @@ export default function HomeContent({
   aiQaConfig,
   contributorsConfig,
   rdDynamicsConfig,
+  openClawShowcaseConfig,
+  isLoggedIn = false,
 }: HomeContentProps) {
   const teamShares = team.slice(0, ENTRY_LIMITS.team);
   const editorItems = editors.slice(0, ENTRY_LIMITS.editors);
@@ -264,6 +270,11 @@ export default function HomeContent({
             </div>
           </div>
 
+          {/* 2.5 Open Claw 部署与养虾应用 */}
+          {openClawShowcaseConfig && (
+            <OpenClawShowcaseSection config={openClawShowcaseConfig} />
+          )}
+
           {/* 3. AI 编辑器 */}
           <div>
             <div className="flex items-center justify-between mb-4">
@@ -288,31 +299,7 @@ export default function HomeContent({
             <p className="text-xs text-slate-500 mt-3">AI 编辑器使用技巧，点击进入详情</p>
           </div>
 
-          {/* 4. 其他开源工具 */}
-          <div>
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-semibold text-slate-900 flex items-center gap-2">
-                <Wrench className="w-5 h-5 text-primary" />
-                其他开源工具
-              </h2>
-              <Link href="/dev" className="text-primary text-sm font-medium">
-                进入研发AI →
-              </Link>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-              {TOOLS.map((name) => (
-                <div
-                  key={name}
-                  className="bg-slate-50 rounded-2xl p-3 text-center text-sm font-medium border border-slate-200 hover:bg-indigo-50 hover:border-indigo-200 transition-colors"
-                >
-                  {name}
-                </div>
-              ))}
-            </div>
-            <p className="text-xs text-slate-500 mt-3">更多开源效率工具，欢迎推荐</p>
-          </div>
-
-          {/* 5. AI使用技巧·速递（合并 EditorCard + 速递列表） */}
+          {/* 4. AI使用技巧·速递（合并 EditorCard + 速递列表） */}
           <div>
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-xl font-semibold text-slate-900 flex items-center gap-2">
@@ -346,7 +333,7 @@ export default function HomeContent({
 
           {/* 6. AI 问答精选 */}
           {aiQaConfig && (
-            <AiQaSection config={aiQaConfig} />
+            <AiQaSection config={aiQaConfig} isLoggedIn={isLoggedIn} />
           )}
         </div>
 
@@ -358,7 +345,7 @@ export default function HomeContent({
             <RoadmapTimeline config={roadmapConfig} />
           )}
           {contributorsConfig && (
-            <ActiveContributors config={contributorsConfig} />
+            <ActiveContributors config={contributorsConfig} allContent={allContent} />
           )}
           <Sidebar />
         </div>

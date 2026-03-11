@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { ContentItem } from "@/types/content";
 
 const BADGE_MAP: Record<string, string> = {
@@ -12,8 +13,8 @@ export default function ModelCard({ item }: { item: ContentItem }) {
   const firstTag = tags[0];
   const restTags = tags.slice(1, 4);
 
-  return (
-    <div className="bg-white rounded-card p-4 border border-cardBorder shadow-sm">
+  const content = (
+    <>
       <div className="font-bold text-base mb-2 flex items-center gap-2">
         {item.title}
         {firstTag && (
@@ -42,9 +43,37 @@ export default function ModelCard({ item }: { item: ContentItem }) {
         )}
       </div>
       <p className="text-sm text-slate-600 my-3">{item.summary}</p>
-      <a href="/kb?cat=models" className="text-sm text-primary font-medium">
-        查看评测 ›
+      <span className="text-sm text-primary font-medium">查看详情 ›</span>
+    </>
+  );
+
+  const cardClass =
+    "block bg-white rounded-card p-4 border border-cardBorder shadow-sm hover:border-slate-300 hover:shadow-lg transition-all text-inherit no-underline";
+
+  if (item.externalUrl) {
+    return (
+      <a
+        href={item.externalUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={cardClass}
+      >
+        {content}
       </a>
-    </div>
+    );
+  }
+
+  if (item.internalHref) {
+    return (
+      <Link href={item.internalHref} className={cardClass}>
+        {content}
+      </Link>
+    );
+  }
+
+  return (
+    <Link href={`/kb/item/${item.id}`} className={cardClass}>
+      {content}
+    </Link>
   );
 }

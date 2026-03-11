@@ -1,5 +1,16 @@
 [
   {
+    "id": "tool-open-claw",
+    "type": "tools",
+    "title": "Open Claw 部署与养虾应用",
+    "summary": "个人助手的运用 — 部署专属 AI 助手，从定时推送到多 Agent 协同；学习资料/资讯定时推送、多角色 Agent 协同、养虾 Skills 示例",
+    "tags": ["Open Claw", "个人助手", "RAG", "养虾", "Skills"],
+    "author": "程云",
+    "updatedAt": "2026-03-11T00:00:00Z",
+    "sourceType": "internal",
+    "internalHref": "/tools/open-claw"
+  },
+  {
     "id": "tool-1",
     "type": "tools",
     "title": "MarkEdit",
@@ -34,5 +45,61 @@
     "tags": ["框架", "LLM"],
     "updatedAt": "2026-02-20T00:00:00Z",
     "sourceType": "internal"
+  },
+  {
+    "id": "tool-5",
+    "type": "tools",
+    "title": "Claude-Mem",
+    "summary": "开源 Claude Code 持久化记忆插件，自动捕获会话上下文、语义压缩存储，新会话智能注入相关记忆，支持 FTS5 + 向量搜索与 Web 可视化（localhost:37777）",
+    "tags": ["Claude Code", "记忆", "插件", "上下文"],
+    "updatedAt": "2026-03-11T00:00:00Z",
+    "sourceType": "internal",
+    "externalUrl": "https://docs.claude-mem.ai"
+  },
+  {
+    "id": "tool-7",
+    "type": "tools",
+    "title": "claude-hud",
+    "summary": "Claude Code 终端状态栏插件，实时显示上下文用量（进度条绿/黄/红）、订阅额度、当前模型、Git 分支、AI 工具调用与 Agent 状态。3 条命令安装，解决「context window is getting full」后知后觉的问题。",
+    "tags": ["Claude Code", "Token监控", "上下文", "插件"],
+    "author": "胡强",
+    "shareDate": "2026-03-03",
+    "updatedAt": "2026-03-03T00:00:00Z",
+    "sourceType": "internal",
+    "externalUrl": "https://developer.aliyun.com/article/1711428"
+  },
+  {
+    "id": "tool-8",
+    "type": "tools",
+    "title": "Claude Code IDE 插件（智谱文档）",
+    "summary": "Claude Code 结合 GLM Coding Plan 在 VS Code、JetBrains IDE 的插件使用指南。搭配 GLM Coding Plan 以更低价格获得 3 倍用量，支持 Cursor、Trae 等基于 VS Code 的 IDE。",
+    "tags": ["Claude Code", "IDE插件", "GLM", "智谱"],
+    "author": "曾韬",
+    "shareDate": "2026-03-04",
+    "updatedAt": "2026-03-04T00:00:00Z",
+    "sourceType": "internal",
+    "externalUrl": "https://docs.bigmodel.cn/cn/coding-plan/tool/claude-for-ide"
+  },
+  {
+    "id": "tool-9",
+    "type": "tools",
+    "title": "Superpowers",
+    "summary": "面向 Claude Code / Cursor 的完整软件开发工作流系统，14+ 技能涵盖 TDD、系统化调试、计划编写与子代理执行；五阶段流程：头脑风暴 → 工作区隔离 → 计划 → 子代理开发 → 收尾",
+    "tags": ["Claude Code", "Cursor", "工作流", "TDD", "技能库"],
+    "updatedAt": "2026-03-11T00:00:00Z",
+    "sourceType": "internal",
+    "externalUrl": "https://claude.com/plugins/superpowers"
+  },
+  {
+    "id": "tool-10",
+    "type": "tools",
+    "title": "Playwright MCP 自动化测试（Cursor）",
+    "summary": "分享人：程云。用 Playwright MCP 在 Cursor 中抓取浏览器日志并生成测试报告；自动发现并修复页面错误，形成调试闭环。教程：Capture Browser Logs（主）与 Autofix Browser Errors（https://egghead.io/lessons/autofix-browser-errors-with-the-playwright-mcp-in-cursor~lq4dr）",
+    "tags": ["Playwright", "Cursor", "MCP", "自动化测试", "调试"],
+    "author": "程云",
+    "shareDate": "2026-03-11",
+    "updatedAt": "2026-03-11T00:00:00Z",
+    "sourceType": "internal",
+    "externalUrl": "https://egghead.io/capture-browser-logs-with-playwright-mcp-in-cursor-to-generate-reports~6vcr2"
   }
 ]

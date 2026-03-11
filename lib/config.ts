@@ -16,6 +16,7 @@ import type { RoadmapConfig } from "@/types/roadmap-config";
 import type { AiQaConfig } from "@/types/ai-qa-config";
 import type { ContributorsConfig } from "@/types/contributors-config";
 import type { RdDynamicsConfig } from "@/types/rd-dynamics-config";
+import type { OpenClawShowcaseConfig } from "@/types/open-claw-showcase-config";
 
 const DATA_DIR = path.join(process.cwd(), "data");
 
@@ -157,10 +158,20 @@ export async function getRoadmapConfig(): Promise<RoadmapConfig> {
   return JSON.parse(data) as RoadmapConfig;
 }
 
+const AI_QA_CONFIG_PATH = path.join(DATA_DIR, "ai-qa-config.json");
+
 export async function getAiQaConfig(): Promise<AiQaConfig> {
-  const filePath = path.join(DATA_DIR, "ai-qa-config.json");
-  const data = await fs.readFile(filePath, "utf-8");
+  const data = await fs.readFile(AI_QA_CONFIG_PATH, "utf-8");
   return JSON.parse(data) as AiQaConfig;
+}
+
+export async function saveAiQaConfig(config: AiQaConfig): Promise<void> {
+  await fs.mkdir(DATA_DIR, { recursive: true });
+  await fs.writeFile(
+    AI_QA_CONFIG_PATH,
+    JSON.stringify(config, null, 2),
+    "utf-8"
+  );
 }
 
 export async function getContributorsConfig(): Promise<ContributorsConfig> {
@@ -173,4 +184,14 @@ export async function getRdDynamicsConfig(): Promise<RdDynamicsConfig> {
   const filePath = path.join(DATA_DIR, "rd-dynamics-config.json");
   const data = await fs.readFile(filePath, "utf-8");
   return JSON.parse(data) as RdDynamicsConfig;
+}
+
+export async function getOpenClawShowcaseConfig(): Promise<OpenClawShowcaseConfig | null> {
+  try {
+    const filePath = path.join(DATA_DIR, "open-claw-showcase-config.json");
+    const data = await fs.readFile(filePath, "utf-8");
+    return JSON.parse(data) as OpenClawShowcaseConfig;
+  } catch {
+    return null;
+  }
 }

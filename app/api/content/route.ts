@@ -11,6 +11,7 @@ const VALID_TYPES: ContentType[] = [
   "editors",
   "team",
   "dingtalk",
+  "problems",
 ];
 
 export async function GET(request: NextRequest) {
@@ -63,6 +64,7 @@ export async function POST(request: NextRequest) {
     updatedAt: now,
     sourceType: body.sourceType ?? "internal",
     externalUrl: body.externalUrl,
+    internalHref: body.internalHref,
     viewCount: body.viewCount ?? 0,
     likeCount: body.likeCount ?? 0,
   };

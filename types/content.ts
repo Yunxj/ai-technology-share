@@ -4,7 +4,8 @@ export type ContentType =
   | "tools"
   | "editors"
   | "team"
-  | "dingtalk";
+  | "dingtalk"
+  | "problems";
 
 export interface ContentItem {
   id: string;
@@ -18,6 +19,8 @@ export interface ContentItem {
   updatedAt: string;
   sourceType: "internal" | "dingtalk";
   externalUrl?: string;
+  internalHref?: string;
   viewCount?: number;
   likeCount?: number;
+  pinned?: boolean;
 }

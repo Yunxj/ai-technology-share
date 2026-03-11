@@ -2,25 +2,25 @@
   {
     "id": "tip-1",
     "type": "tips",
-    "title": "用AI将遗留代码重构为现代Java的5个提示",
-    "summary": "结合Claude + 自定义指令，两周老旧模块重构节省8人日",
-    "tags": ["提示词工程", "代码重构"],
-    "author": "张工",
-    "updatedAt": "2026-02-22T00:00:00Z",
+    "title": "提升 AI 对话效果：资料齐全与 Prompt 技巧",
+    "summary": "AI 对话需资料齐全、描述清晰。善用提示词五要素：角色设定、任务描述、背景信息、输出格式、示例参考；Few-shot 与思维链可显著提升输出质量；结构化组织、迭代优化是关键。",
+    "tags": ["提示词工程", "AI对话", "Prompt"],
+    "updatedAt": "2026-03-11T00:00:00Z",
     "sourceType": "internal",
-    "viewCount": 342,
-    "likeCount": 56
+    "internalHref": "/doc/ai-dialogue-prompt",
+    "viewCount": 0,
+    "likeCount": 0
   },
   {
     "id": "tip-2",
     "type": "tips",
-    "title": "自动生成高覆盖单元测试：GPT-4 实践",
-    "summary": "通过上下文注入，为Python/Java生成边界测试用例",
-    "tags": ["单元测试", "GPT-4"],
-    "author": "李艾",
-    "updatedAt": "2026-02-18T00:00:00Z",
+    "title": "需求开发先规划：功能拆分与 Cursor Plan 模式",
+    "summary": "需求开发时将大功能拆成多个小功能，开发前理清思路。使用 Cursor Plan 模式：自动调研代码库、生成 Markdown 计划、可编辑调整、一键执行；适合多文件联动、代码重构等复杂任务，减少返工。",
+    "tags": ["Cursor", "Plan模式", "需求拆分"],
+    "updatedAt": "2026-03-11T00:00:00Z",
     "sourceType": "internal",
-    "viewCount": 287,
-    "likeCount": 41
+    "internalHref": "/doc/plan-mode-requirement-split",
+    "viewCount": 0,
+    "likeCount": 0
   }
 ]

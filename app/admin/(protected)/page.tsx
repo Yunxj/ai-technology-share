@@ -6,10 +6,11 @@ import { ArrowLeft, Plus, Sparkles, Trash2, Edit2 } from "lucide-react";
 import type { ContentItem, ContentType } from "@/types/content";
 
 const TYPES: { id: ContentType; label: string }[] = [
-  { id: "tips", label: "研发技巧" },
-  { id: "models", label: "大模型" },
+  { id: "tips", label: "技巧分享" },
+  { id: "problems", label: "问题与方案" },
   { id: "tools", label: "工具" },
-  { id: "editors", label: "AI编辑器" },
+  { id: "editors", label: "AI 编辑器" },
+  { id: "models", label: "大模型评测" },
   { id: "team", label: "团队分享" },
   { id: "dingtalk", label: "钉钉文档" },
 ];

@@ -4,14 +4,18 @@
   "ctaHref": "/kb",
   "items": [
     {
+      "id": "aiqa-1",
       "title": "如何让AI理解我们的代码规范？",
       "answerCount": 3,
-      "daysAgo": 2
+      "daysAgo": 2,
+      "sortOrder": 0
     },
     {
+      "id": "aiqa-2",
       "title": "有哪些好用的AI前端组件生成工具？",
       "answerCount": 2,
-      "daysAgo": 5
+      "daysAgo": 5,
+      "sortOrder": 1
     }
   ]
 }

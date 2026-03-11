@@ -9,6 +9,7 @@ const TYPE_TO_FILE: Record<ContentType, string> = {
   editors: "editors.json",
   team: "team.json",
   dingtalk: "dingtalk.json",
+  problems: "problems.json",
 };
 
 const DATA_DIR = path.join(process.cwd(), "data");
@@ -21,7 +22,17 @@ export async function getContent(type: ContentType): Promise<ContentItem[]> {
   const filePath = await getDataPath(type);
   try {
     const data = await fs.readFile(filePath, "utf-8");
-    return JSON.parse(data);
+    const items: ContentItem[] = JSON.parse(data);
+    if (type === "team" && items.length > 0) {
+      return [...items].sort((a, b) => (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0));
+    }
+    if (type === "tools" && items.length > 0) {
+      return [...items].sort(
+        (a, b) =>
+          new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+      );
+    }
+    return items;
   } catch {
     return [];
   }
@@ -35,6 +46,7 @@ export async function getAllContent(): Promise<ContentItem[]> {
     "editors",
     "team",
     "dingtalk",
+    "problems",
   ];
   const results = await Promise.all(types.map((t) => getContent(t)));
   return results.flat();

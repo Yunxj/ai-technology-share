@@ -18,6 +18,7 @@ const CONTENT_TYPES: ContentType[] = [
   "editors",
   "team",
   "dingtalk",
+  "problems",
 ];
 
 function buildPrompt(content: string, hint: "link" | "meeting" | "auto"): string {

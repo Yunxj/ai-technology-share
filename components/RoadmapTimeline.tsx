@@ -34,12 +34,12 @@ export default function RoadmapTimeline({ config }: RoadmapTimelineProps) {
             const nodeClass = NODE_STYLES[item.status] ?? NODE_STYLES["计划中"];
             const badgeClass = STATUS_STYLES[item.status] ?? STATUS_STYLES["计划中"];
             return (
-              <div key={item.order} className="relative">
-                {/* 节点 - 略大提升可读性 */}
+              <div key={item.order} className="flex gap-3 items-start">
+                {/* 节点：与标题首行居中对齐 */}
                 <div
-                  className={`absolute left-0 top-0.5 w-2.5 h-2.5 rounded-full border-2 z-10 ${nodeClass}`}
+                  className={`w-2.5 h-2.5 rounded-full border-2 flex-shrink-0 mt-1.5 z-10 ${nodeClass}`}
                 />
-                <div className="min-w-0 pl-4">
+                <div className="min-w-0 flex-1 pt-px">
                   <div className="flex flex-wrap items-center gap-1.5 mb-0.5">
                     <span className="font-medium text-slate-800 text-xs">{item.title}</span>
                     <span

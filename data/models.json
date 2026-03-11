@@ -1,38 +1,46 @@
 [
   {
-    "id": "model-1",
+    "id": "model-5",
     "type": "models",
-    "title": "Llama 3 8B",
-    "summary": "Meta最新，指令遵循优秀，适合代码生成。8B量化后仅需4G显存。",
-    "tags": ["免费商用", "推理快", "多语言", "中文稍弱"],
-    "updatedAt": "2026-02-20T00:00:00Z",
-    "sourceType": "internal"
+    "title": "Kimi 2.5",
+    "summary": "月之暗面，原生多模态架构，15T视觉文本预训练。MMMU-Pro/Video-MMMU 86.6%，空间理解与视觉转代码顶级。",
+    "tags": ["多模态", "视频理解", "原生架构", "五星"],
+    "author": "胡强",
+    "updatedAt": "2026-03-04T00:00:00Z",
+    "sourceType": "internal",
+    "internalHref": "/doc/llm-multimodal-ranking"
   },
   {
-    "id": "model-2",
+    "id": "model-6",
     "type": "models",
-    "title": "Qwen2.5 7B",
-    "summary": "阿里通义千问家族，代码能力接近GPT-3.5，对中文开发场景极友好。",
-    "tags": ["中文强", "中文理解顶尖", "长上下文", "工具调用待完善"],
-    "updatedAt": "2026-02-20T00:00:00Z",
-    "sourceType": "internal"
+    "title": "Qwen 3.5 Plus",
+    "summary": "通义千问，397B总参/17B激活 MoE。图像理解、OCR、图文检索、空间推理优秀，找不同/反写作接近 Gemini 3 Pro。",
+    "tags": ["多模态", "全模态", "中文强", "四星半"],
+    "author": "胡强",
+    "updatedAt": "2026-03-04T00:00:00Z",
+    "sourceType": "internal",
+    "internalHref": "/doc/llm-multimodal-ranking"
   },
   {
-    "id": "model-3",
+    "id": "model-7",
     "type": "models",
-    "title": "Gemma 7B",
-    "summary": "适合移动端/本地部署，在代码生成上表现稳定。",
-    "tags": ["轻量", "谷歌出品", "安全对齐高", "知识截止早"],
-    "updatedAt": "2026-02-20T00:00:00Z",
-    "sourceType": "internal"
+    "title": "MiniMax M2.5",
+    "summary": "多模态中上，图像理解与基础图文交互稳定。成本优势明显（价格约竞品1/10），视觉深度推理一般。",
+    "tags": ["多模态", "成本优", "图像理解", "三星半"],
+    "author": "胡强",
+    "updatedAt": "2026-03-04T00:00:00Z",
+    "sourceType": "internal",
+    "internalHref": "/doc/llm-multimodal-ranking"
   },
   {
-    "id": "model-4",
+    "id": "model-8",
     "type": "models",
-    "title": "ChatGLM3-6B",
-    "summary": "智谱AI，支持工具调用，适合中文对话和简单代码任务。",
-    "tags": ["国产", "中英双语好", "联网搜索", "推理速度稍慢"],
-    "updatedAt": "2026-02-20T00:00:00Z",
-    "sourceType": "internal"
+    "title": "GLM 5.0",
+    "summary": "支持多模态，视觉理解深度较原生模型有差距。长文本、长视频支持强，细粒度图像识别与视觉推理较弱。",
+    "tags": ["多模态", "长上下文", "智谱", "三星"],
+    "author": "胡强",
+    "updatedAt": "2026-03-04T00:00:00Z",
+    "sourceType": "internal",
+    "internalHref": "/doc/llm-multimodal-ranking"
   }
 ]

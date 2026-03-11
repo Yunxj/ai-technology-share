@@ -9,7 +9,9 @@ import {
   getAiQaConfig,
   getContributorsConfig,
   getRdDynamicsConfig,
+  getOpenClawShowcaseConfig,
 } from "@/lib/config";
+import { getAdminToken, verifyAdmin } from "@/lib/auth";
 import HomeContent from "@/components/HomeContent";
 
 export default async function HomePage() {
@@ -28,6 +30,7 @@ export default async function HomePage() {
     aiQaConfig,
     contributorsConfig,
     rdDynamicsConfig,
+    openClawShowcaseConfig,
   ] = await Promise.all([
     getAllContent(),
     getContent("tips"),
@@ -43,9 +46,10 @@ export default async function HomePage() {
     getAiQaConfig(),
     getContributorsConfig(),
     getRdDynamicsConfig(),
+    getOpenClawShowcaseConfig(),
   ]);
 
-  const typeCounts = ["tips", "models", "tools", "editors", "team", "dingtalk"].map((type) => ({
+  const typeCounts = ["tips", "models", "tools", "editors", "team", "dingtalk", "problems"].map((type) => ({
     type,
     count: allContent.filter((c) => c.type === type).length,
   }));
@@ -60,8 +64,12 @@ export default async function HomePage() {
     (a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
   );
 
+  const token = await getAdminToken();
+  const isLoggedIn = verifyAdmin(token);
+
   return (
     <HomeContent
+      allContent={allContent}
       team={team}
       editors={editors}
       tipsWithDingtalk={tipsWithDingtalk}
@@ -79,6 +87,8 @@ export default async function HomePage() {
       aiQaConfig={aiQaConfig}
       contributorsConfig={contributorsConfig}
       rdDynamicsConfig={rdDynamicsConfig}
+      openClawShowcaseConfig={openClawShowcaseConfig}
+      isLoggedIn={isLoggedIn}
     />
   );
 }

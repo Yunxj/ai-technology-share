@@ -1,0 +1,34 @@
+[
+  {
+    "id": "problem-1",
+    "type": "problems",
+    "title": "Claude Code 上下文问题与解决方案：记忆持久化与工作流增强",
+    "summary": "介绍 Claude Code 常见的上下文/记忆问题（会话断开即遗忘、长会话 Token 超限等），以及 Claude-Mem 持久化记忆、Superpowers 技能库两种主流解决方案的适用场景与快速入口",
+    "tags": ["Claude Code", "上下文", "记忆", "Claude-Mem", "Superpowers"],
+    "updatedAt": "2026-03-11T00:00:00Z",
+    "sourceType": "internal",
+    "externalUrl": "https://docs.claude-mem.ai"
+  },
+  {
+    "id": "problem-2",
+    "type": "problems",
+    "title": "AI 参与编译时 Token 全耗在编译任务里",
+    "summary": "问题：本地编译需把日志上传到大模型，编译输出冗长，Token 全消耗在此，处理很慢。提出人：曾韬，解决人：曾韬、胡强，时间：2026-03-04。处理思路：可先用 grep/tail 等过滤关键错误行再上传，或压缩日志上下文。",
+    "tags": ["AI开发", "编译", "Token", "日志"],
+    "author": "曾韬",
+    "shareDate": "2026-03-04",
+    "updatedAt": "2026-03-04T00:00:00Z",
+    "sourceType": "internal"
+  },
+  {
+    "id": "problem-3",
+    "type": "problems",
+    "title": "OpenCode 越调教思考时间越长",
+    "summary": "问题：OpenCode 第一次执行较快，后面越调教思考时间越长，上下文大了就是这样。提出人：李厚展，解决人：曾韬、胡强，时间：2026-03-04。处理方案：记得压缩上下文，opencode-dcp。",
+    "tags": ["OpenCode", "上下文", "性能", "opencode-dcp"],
+    "author": "李厚展",
+    "shareDate": "2026-03-04",
+    "updatedAt": "2026-03-04T00:00:00Z",
+    "sourceType": "internal"
+  }
+]

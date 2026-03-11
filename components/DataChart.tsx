@@ -16,12 +16,13 @@ import {
 } from "recharts";
 
 const TYPE_LABELS: Record<string, string> = {
-  tips: "研发技巧",
-  models: "大模型",
+  tips: "技巧分享",
+  models: "大模型评测",
   tools: "工具",
-  editors: "AI编辑器",
+  editors: "AI 编辑器",
   team: "团队分享",
   dingtalk: "钉钉文档",
+  problems: "问题与方案",
 };
 
 const COLORS = ["#2563eb", "#7c3aed", "#0ea5e9", "#8b5cf6", "#6366f1", "#3b82f6"];

@@ -28,7 +28,7 @@ export default async function DevPage() {
       getHotTagsConfig(),
     ]);
 
-  const typeCounts = ["tips", "models", "tools", "editors", "team", "dingtalk"].map((type) => ({
+  const typeCounts = ["tips", "models", "tools", "editors", "team", "dingtalk", "problems"].map((type) => ({
     type,
     count: allContent.filter((c) => c.type === type).length,
   }));
