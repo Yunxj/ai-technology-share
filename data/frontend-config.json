@@ -1,0 +1,99 @@
+{
+  "version": "1.0.0",
+  "projects": ["front-applet", "we-retail", "we-retail-admin", "yst-web", "yst-web-business"],
+  "promotion": {
+    "painPoints": "已用 AI 编程，但生成质量不达标——UI 对不上设计稿、交互漏写、接口字段错、测试靠手点、上下文塞不下。",
+    "case": "PC 后台标准列表页，装前人工手写 2～3 天；装后 AI 出代码、人只审核，0.5～1 天，人工几乎不写代码。",
+    "installCommand": "node path/to/ai-front-end-efficiency-boost/scripts/install-cursor-config.js",
+    "installNote": "一条命令，Skills / Rules / Prompts / MCP 自动写入，打开项目即生效。支持 --editor=cursor|claude|opencode|all"
+  },
+  "workflowSteps": [
+    { "step": 1, "name": "需求评审", "role": "AI + 人工", "aiRole": "会议记录 + 结构化总结", "humanRole": "审核补充遗漏", "output": "meeting-summary.md" },
+    { "step": 2, "name": "TAPD 确认", "role": "AI + 人工", "aiRole": "MCP 拉取需求 + 生成任务清单", "humanRole": "确认拆分合理性", "output": "task-list.md" },
+    { "step": 3, "name": "需求分析", "role": "人工主导", "aiRole": "辅助分析页面/模块、解析设计稿", "humanRole": "主导判断开发范围", "output": "page-analysis.md" },
+    { "step": 4, "name": "代码定位", "role": "AI + 人工", "aiRole": "搜索定位文件 + 总结现有逻辑", "humanRole": "验证分析准确性", "output": "code-analysis.md" },
+    { "step": 5, "name": "资料归档", "role": "人工主导", "aiRole": "辅助整理格式", "humanRole": "主导收集资料", "output": "docs/requirements/{需求名}/" },
+    { "step": 6, "name": "AI 开发", "role": "AI 主导", "aiRole": "技术方案 → 任务计划 → 编码 → 自测 → 联调", "humanRole": "方案审核 → 代码审核 → 效果验收", "output": "功能代码" },
+    { "step": 7, "name": "整体验证", "role": "人工主导", "aiRole": "生成测试用例 + Browser 自动化", "humanRole": "端到端走查", "output": "验证报告" }
+  ],
+  "frameworkChapters": [
+    { "id": "01", "title": "优势与劣势", "summary": "AI 编程的 8 项优势和 6 项劣势速查" },
+    { "id": "02", "title": "六条核心策略", "summary": "从优劣势推导的 6 条扬长避短策略" },
+    { "id": "03", "title": "场景分级", "summary": "还原度定义 + 影响因素模型 + 三级分级 + 决策树" },
+    { "id": "04", "title": "工具体系", "summary": "Skills/Rules/Prompts/MCP 的定位和使用" },
+    { "id": "05", "title": "效果度量", "summary": "还原度公式 + 提效数据 + 四维指标 + 改进循环" },
+    { "id": "06", "title": "实战案例", "summary": "4 个真实案例（Level 1/2/3）" },
+    { "id": "07", "title": "风险与可复制性", "summary": "三类风险 + 可复制性分析 + 未来规划" }
+  ],
+  "tools": {
+    "relationship": {
+      "skills": { "label": "知识手册", "trigger": "AI 持续参考", "mode": "被动生效" },
+      "rules": { "label": "编码规矩", "trigger": "生成代码时强制遵守", "mode": "自动激活" },
+      "prompts": { "label": "任务模板", "trigger": "开发者手动引用", "mode": "按需使用" }
+    },
+    "skills": [
+      { "id": "taro-miniprogram", "project": "front-applet", "content": "Taro 3 + React 17 + MobX；路由 app.config.ts；observer 组件模式；god-taro-library 40+ 组件" },
+      { "id": "native-miniprogram", "project": "we-retail", "content": "原生小程序 4 文件模式；@wxPage 装饰器；retailwe-ui 65+ 组件；apis.module.method() 请求" },
+      { "id": "umi-admin", "project": "we-retail-admin", "content": "Umi 2 + Dva；connect() 状态管理；Tea + AntD 混用；umi-request 请求层" },
+      { "id": "react-admin", "project": "yst-web / yst-web-business", "content": "React 17 + MobX；El 组件体系（ElSearchTable/ElForm/ElEditTable）；自定义 fetch；Module Federation" },
+      { "id": "shared-patterns", "project": "所有项目", "content": "TypeScript 规范；组件映射表；联调流程；设计稿 Token 转换；AI 自查清单；Git 工作流" }
+    ],
+    "rules": [
+      { "id": "code-style", "globs": "**/*.tsx **/*.ts", "content": "import 顺序；命名规范；分端样式文件命名；路径别名；禁止事项" },
+      { "id": "component-pattern", "globs": "**/*.tsx **/index.ts", "content": "4 种组件模式：Taro observer / @wxPage 4 文件 / Dva connect / MobX inject" },
+      { "id": "commit-convention", "globs": "**/* (alwaysApply)", "content": "commit 格式；分支命名；AI 提交注意事项" },
+      { "id": "platform-rules", "globs": "**/*.tsx **/*.wxml", "content": "小程序禁止 API + 替代；Browser MCP 策略；设计稿尺寸；HTML 替代表" }
+    ],
+    "prompts": [
+      { "id": "01-tech-plan", "name": "技术方案生成", "step": "6.1.1", "usage": "需求资料齐全后，切 Plan 模式" },
+      { "id": "02-task-plan", "name": "任务拆解", "step": "6.1.2", "usage": "技术方案审核通过后" },
+      { "id": "03-static-page", "name": "静态页面生成", "step": "6.1.3", "usage": "切 Agent 模式，按任务逐个执行" },
+      { "id": "04-api-binding", "name": "接口绑定", "step": "6.2", "usage": "联调阶段，替换 Mock 为真实接口" },
+      { "id": "05-interaction", "name": "交互逻辑", "step": "6.3", "usage": "补充表单校验、弹窗、列表操作等" },
+      { "id": "06-review-fix", "name": "自查修复", "step": "6.1.4", "usage": "开发完成后 AI 自查 + 人工反馈修复" }
+    ]
+  },
+  "templates": {
+    "requirementTemplates": [
+      { "id": "meeting-summary", "name": "meeting-summary.md", "usage": "需求评审会议总结（功能点 / 验收标准 / 待确认问题）" },
+      { "id": "task-list", "name": "task-list.md", "usage": "开发任务清单（任务 / 优先级 / 依赖 / 预估）" },
+      { "id": "page-analysis", "name": "page-analysis.md", "usage": "页面分析（页面清单 / 跳转关系 / 设计稿 Token）" },
+      { "id": "code-analysis", "name": "code-analysis.md", "usage": "代码定位分析（关键文件 / 现有逻辑 / 可复用资源）" },
+      { "id": "project-info", "name": "project-info.md", "usage": "项目信息（环境地址 / 测试账号 / 页面入口）" }
+    ],
+    "componentMapping": "Web/小程序组件映射表 — AntD / Tea / god-taro-library / retailwe-ui / El 组件对照"
+  },
+  "scriptUsage": [
+    { "label": "基本用法", "command": "node scripts/install-cursor-config.js --target=../my-project" },
+    { "label": "多编辑器", "command": "node scripts/install-cursor-config.js --editor=all --target=../my-project" },
+    { "label": "手动指定项目类型", "command": "node scripts/install-cursor-config.js --project=front-applet --target=../front-applet" },
+    { "label": "更新已安装配置", "command": "node scripts/install-cursor-config.js --update --target=../my-project" }
+  ],
+  "readingPaths": [
+    { "role": "管理者 / 决策者", "duration": "约 30 分钟", "docs": ["优势与劣势", "效果度量", "风险与可复制性"] },
+    { "role": "开发者新手", "duration": "约 2 小时", "docs": ["新成员上手指南", "六条核心策略", "场景分级", "开发流程 SOP", "最佳实践"] },
+    { "role": "开发者进阶", "duration": "约 1 小时", "docs": ["场景分级 - 还原度影响因素", "工具体系", "实战案例", "Prompt 模板"] },
+    { "role": "跨团队推广", "duration": "约 20 分钟", "docs": ["推广宣传文案", "可复制性"] }
+  ],
+  "techStackTable": {
+    "dimensions": ["框架", "状态管理", "路由", "样式", "UI 组件", "请求层", "Browser MCP"],
+    "projects": [
+      {
+        "name": "front-applet",
+        "values": ["Taro 3 + React 17", "MobX", "app.config.ts", "SCSS + CSS Modules", "god-taro-library", "Taro.request + YAPI", "不可用"]
+      },
+      {
+        "name": "we-retail",
+        "values": ["原生微信小程序", "Redux + MobX", "app.json + routerMap.ts", "Less → wxss", "retailwe-ui (65+)", "@tencent/http-client", "不可用"]
+      },
+      {
+        "name": "we-retail-admin",
+        "values": ["Umi 2 + React 16", "Dva (Redux)", "config/routes/*.ts", "Less + CSS Modules", "Ant Design + Tea", "umi-request", "可用"]
+      },
+      {
+        "name": "yst-web / yst-web-business",
+        "values": ["React 17", "MobX", "React Router 5 + CacheRoute", "Less + Tailwind + CSS Modules", "Ant Design + @zrhsh/antd + El", "自定义 fetch", "可用"]
+      }
+    ]
+  }
+}

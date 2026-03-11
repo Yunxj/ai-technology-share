@@ -1,0 +1,40 @@
+{
+  "title": "MasterGo 设计稿前端还原度",
+  "subtitle": "解决设计稿到前端代码还原度不足的痛点 — PC 端先行，小程序二期",
+  "painPoints": [
+    "AI 生成代码与 MasterGo 设计稿对不上",
+    "AI 对样式数值「合理化」改写（如 13px 改成 14px）"
+  ],
+  "ctaHref": "/frontend",
+  "ctaText": "进入前端配置中心",
+  "pcPlatform": {
+    "title": "PC 端",
+    "badge": "优先支持",
+    "points": [
+      "MasterGo MCP 调用顺序：getDsl → getMeta → getComponentWorkflow",
+      "Token 精确映射：颜色、字号、间距、圆角 → 项目变量",
+      "Browser MCP 实时截图对比 + Playwright 视觉回归",
+      "还原度预期 45–70%"
+    ]
+  },
+  "miniprogramPlatform": {
+    "title": "小程序端",
+    "badge": "二期",
+    "description": "分维度微调 + 人工预览，依赖 design-fidelity 技能"
+  },
+  "mcpSteps": [
+    { "order": 1, "name": "getDsl", "description": "提取页面/组件 DSL 结构化数据" },
+    { "order": 2, "name": "getMeta", "description": "提取节点元数据（尺寸、位置、层级）" },
+    { "order": 3, "name": "getComponentWorkflow", "description": "复杂组件时生成约束，减少 AI 合理化改写" }
+  ],
+  "tokenCategories": [
+    { "name": "颜色", "rule": "查找设计稿颜色与项目变量最接近匹配，禁止硬编码 HEX", "items": ["主色 → @zrhsh/antd 主题", "主文字 → Tailwind/SCSS 变量", "背景 → bg-gray-50 / @color-bg"] },
+    { "name": "字号", "rule": "严格按设计稿数值，禁止「合理化」成常用值", "items": ["12px 辅助/标签", "14px 正文", "16px 标题/强调"] },
+    { "name": "间距", "rule": "奇数间距必须保留，不得改为 12px、16px", "items": ["8/12/16/24px 对应项目变量"] }
+  ],
+  "constraints": [
+    "数值禁止优化：13px 不能改成 14px",
+    "布局禁止改写：绝对定位不能改 Flexbox",
+    "样式层只读：叠加业务逻辑时不改 className/style"
+  ]
+}

@@ -1,0 +1,37 @@
+[
+  {
+    "id": "team-1",
+    "type": "team",
+    "title": "Cursor 多文件重构实战",
+    "summary": "分享人：张工 · 结合真实项目演示 Cursor 的 Composer 模式批量修改代码",
+    "tags": ["Cursor", "Composer"],
+    "author": "张工",
+    "shareDate": "2026-02-20",
+    "shareEvent": "研发周会分享",
+    "updatedAt": "2026-02-20T00:00:00Z",
+    "sourceType": "internal"
+  },
+  {
+    "id": "team-2",
+    "type": "team",
+    "title": "研发群 AI 提效案例汇总",
+    "summary": "群内同事整理的 AI 使用技巧与踩坑记录，持续更新",
+    "tags": ["钉钉群", "AI探索"],
+    "shareEvent": "钉钉群 · AI探索文档",
+    "updatedAt": "2026-02-20T00:00:00Z",
+    "sourceType": "dingtalk",
+    "externalUrl": "https://example.dingtalk.com/doc/xxx"
+  },
+  {
+    "id": "team-3",
+    "type": "team",
+    "title": "Claude Code 与本地模型对比",
+    "summary": "分享人：李艾 · 对比 Claude、Qwen 在代码生成场景的表现",
+    "tags": ["Claude", "Qwen"],
+    "author": "李艾",
+    "shareDate": "2026-02-15",
+    "shareEvent": "技术分享会",
+    "updatedAt": "2026-02-15T00:00:00Z",
+    "sourceType": "internal"
+  }
+]

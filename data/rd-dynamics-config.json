@@ -1,0 +1,30 @@
+{
+  "title": "研发智能动态 · 实时",
+  "ctaText": "AI 生成摘要",
+  "ctaHref": "/kb",
+  "items": [
+    {
+      "icon": "file",
+      "title": "AI 代码生成器 v3 发布 · 支持仓库上下文",
+      "metadata": "🚀 研发 · 2小时前 🔥 热度 89"
+    },
+    {
+      "icon": "chat",
+      "title": "Prompt 大赛结果: 最佳提效指令集公布",
+      "metadata": "🏆 活动 · 昨天 📈 参与 42 人"
+    },
+    {
+      "icon": "calendar",
+      "title": "前端团队 · AI 组件库已适配 96% 业务场景",
+      "metadata": "📊 进度更新 ✅ 完成里程碑"
+    }
+  ],
+  "chartData": [
+    { "value": 20 },
+    { "value": 45 },
+    { "value": 35 },
+    { "value": 60 },
+    { "value": 48 },
+    { "value": 75 }
+  ]
+}

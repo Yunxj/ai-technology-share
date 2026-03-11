@@ -1,0 +1,17 @@
+{
+  "title": "AI问答精选",
+  "ctaText": "去提问",
+  "ctaHref": "/kb",
+  "items": [
+    {
+      "title": "如何让AI理解我们的代码规范？",
+      "answerCount": 3,
+      "daysAgo": 2
+    },
+    {
+      "title": "有哪些好用的AI前端组件生成工具？",
+      "answerCount": 2,
+      "daysAgo": 5
+    }
+  ]
+}

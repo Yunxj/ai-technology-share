@@ -1,0 +1,16 @@
+{
+  "name": "AI提效工坊",
+  "logoText": "AI提效工坊",
+  "badge": "开源 · 研发版",
+  "socialLinks": {},
+  "footer": {
+    "copyright": "© 2026 AI 提效工坊",
+    "links": [
+      { "label": "关于", "href": "/about" },
+      { "label": "知识库", "href": "/kb" },
+      { "label": "前端团队", "href": "/frontend" },
+      { "label": "管理后台", "href": "/admin" }
+    ],
+    "extra": "数据由管理后台录入维护，支持会议分享、钉钉文档、AI编辑器技巧等持续更新"
+  }
+}

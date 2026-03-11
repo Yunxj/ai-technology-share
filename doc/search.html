@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>搜索 - AI提效工坊</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Inter", system-ui, sans-serif; background-color: #f5f7fb; color: #1e293b; }
+        .container { max-width: 800px; margin: 0 auto; padding: 24px; }
+        .navbar { display: flex; align-items: center; gap: 24px; padding-bottom: 24px; border-bottom: 1px solid #e2e8f0; }
+        .navbar a { color: #334155; text-decoration: none; font-weight: 500; }
+        .navbar a:hover { color: #2563eb; }
+        .search-hero { padding: 32px 0 24px; }
+        .search-hero .search-box { display: flex; align-items: center; gap: 12px; background: white; border-radius: 40px; padding: 12px 20px; border: 1px solid #e2e8f0; margin-bottom: 24px; }
+        .search-hero .search-box input { flex: 1; border: none; outline: none; font-size: 1rem; }
+        .search-hero .search-box i { color: #94a3b8; }
+        .search-results { margin-top: 16px; }
+        .search-result-item { background: white; border-radius: 16px; padding: 20px; margin-bottom: 12px; border: 1px solid #edf2f7; display: flex; align-items: flex-start; gap: 16px; text-decoration: none; color: inherit; transition: all 0.2s; }
+        .search-result-item:hover { border-color: #cbd5e1; }
+        .result-type { font-size: 0.7rem; font-weight: 600; color: #64748b; text-transform: uppercase; margin-bottom: 4px; }
+        .result-title { font-weight: 600; font-size: 1rem; margin-bottom: 6px; }
+        .result-desc { font-size: 0.85rem; color: #64748b; }
+        .result-ext { color: #0089ff; font-size: 0.8rem; margin-left: 6px; }
+        .empty-state { text-align: center; padding: 48px 24px; color: #64748b; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <a href="ui-2.html"><i class="fas fa-robot" style="color:#2563eb;"></i> AI提效工坊</a>
+            <a href="ui-2.html">首页</a>
+            <a href="ui-2.html#kb">知识库</a>
+        </nav>
+        <div class="search-hero">
+            <form class="search-box" action="search.html" method="get">
+                <i class="fas fa-search"></i>
+                <input type="text" name="q" placeholder="全局搜索技巧、模型、工具、钉钉文档..." value="">
+            </form>
+            <p style="font-size:0.9rem;color:#64748b;">搜索「<span id="queryDisplay">提示词</span>」共找到 <strong id="resultCount">3</strong> 条结果</p>
+        </div>
+        <div class="search-results">
+            <a href="#" class="search-result-item">
+                <div style="flex:1;">
+                    <div class="result-type">研发技巧</div>
+                    <div class="result-title">用AI将遗留代码重构为现代Java的5个提示</div>
+                    <div class="result-desc">结合Claude + 自定义指令，两周老旧模块重构节省8人日...</div>
+                </div>
+            </a>
+            <a href="https://dingtalk.com" target="_blank" class="search-result-item">
+                <div style="flex:1;">
+                    <div class="result-type">钉钉文档</div>
+                    <div class="result-title">AI辅助CodeReview实践指南 <span class="result-ext">外链</span></div>
+                    <div class="result-desc">团队内部整理的CodeReview提效手册...</div>
+                </div>
+                <i class="fas fa-external-link-alt" style="color:#94a3b8;"></i>
+            </a>
+            <a href="#" class="search-result-item">
+                <div style="flex:1;">
+                    <div class="result-type">大模型</div>
+                    <div class="result-title">Qwen2.5 7B 评测</div>
+                    <div class="result-desc">阿里通义千问家族，代码能力接近GPT-3.5...</div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <script>
+        var params = new URLSearchParams(location.search);
+        var q = params.get('q') || '提示词';
+        document.querySelector('input[name=q]').value = q;
+        document.getElementById('queryDisplay').textContent = q;
+    </script>
+</body>
+</html>

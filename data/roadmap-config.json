@@ -1,0 +1,47 @@
+{
+  "title": "迭代计划",
+  "items": [
+    {
+      "order": 1,
+      "title": "AI 提效数据概览",
+      "description": "图形展示人名、时间、收录文档、问题与处理方案、工具等内容数据",
+      "status": "进行中",
+      "date": "2025-Q1"
+    },
+    {
+      "order": 2,
+      "title": "Open Claw 部署与养虾应用",
+      "description": "部署说明、养虾场景应用；飞书 + Python RAG LangChain Dify 学习资料推送",
+      "status": "计划中",
+      "date": "2025-Q2"
+    },
+    {
+      "order": 3,
+      "title": "养虾 Skills 研究",
+      "description": "配合 Open Claw 的 Skills 编写方法",
+      "status": "计划中",
+      "date": "2025-Q2"
+    },
+    {
+      "order": 4,
+      "title": "组内 AI 专题会议分享",
+      "description": "会议分享内容沉淀；组内 AI 使用方式的文档分享",
+      "status": "计划中",
+      "date": "2025-Q2"
+    },
+    {
+      "order": 5,
+      "title": "MasterGo 设计稿还原度",
+      "description": "现有方案 + AI 流程使用前后截图对比",
+      "status": "进行中",
+      "date": "2025-Q2"
+    },
+    {
+      "order": 6,
+      "title": "Coze 工作流开发分享",
+      "description": "Coze 工作流开发经验分享",
+      "status": "计划中",
+      "date": "2025-Q2"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "title": "活跃贡献者",
+  "contributors": [
+    { "name": "张云帆", "articles": 12, "likes": 46 },
+    { "name": "李心怡", "articles": 8, "likes": 31 },
+    { "name": "王培霖", "articles": 6, "likes": 22 },
+    { "name": "陈思羽", "articles": 5, "likes": 18 }
+  ]
+}

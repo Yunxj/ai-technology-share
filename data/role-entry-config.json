@@ -1,0 +1,39 @@
+{
+  "roles": [
+    {
+      "id": "dev",
+      "label": "研发",
+      "href": "/dev",
+      "enabled": true,
+      "badge": "热门·提效"
+    },
+    {
+      "id": "frontend",
+      "label": "前端",
+      "href": "/frontend",
+      "enabled": true,
+      "badge": "配置中心"
+    },
+    {
+      "id": "test",
+      "label": "测试",
+      "href": "#",
+      "enabled": false,
+      "badge": "二期 筹备中"
+    },
+    {
+      "id": "product",
+      "label": "产品",
+      "href": "#",
+      "enabled": false,
+      "badge": "二期 筹备中"
+    },
+    {
+      "id": "ui",
+      "label": "UI设计",
+      "href": "#",
+      "enabled": false,
+      "badge": "二期 筹备中"
+    }
+  ]
+}

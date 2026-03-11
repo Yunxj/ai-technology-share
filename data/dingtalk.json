@@ -1,0 +1,22 @@
+[
+  {
+    "id": "dt-1",
+    "type": "dingtalk",
+    "title": "AI辅助CodeReview实践指南",
+    "summary": "团队内部整理的CodeReview提效手册，点击跳转钉钉",
+    "tags": ["钉钉文档", "CodeReview"],
+    "updatedAt": "2026-02-20T00:00:00Z",
+    "sourceType": "dingtalk",
+    "externalUrl": "https://example.dingtalk.com/doc/codereview"
+  },
+  {
+    "id": "dt-2",
+    "type": "dingtalk",
+    "title": "Qwen本地部署与Continue插件配置",
+    "summary": "内网环境下的本地模型部署步骤",
+    "tags": ["钉钉文档", "Qwen", "Continue"],
+    "updatedAt": "2026-02-15T00:00:00Z",
+    "sourceType": "dingtalk",
+    "externalUrl": "https://example.dingtalk.com/doc/qwen"
+  }
+]

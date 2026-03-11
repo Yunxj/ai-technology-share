@@ -1,0 +1,38 @@
+[
+  {
+    "id": "model-1",
+    "type": "models",
+    "title": "Llama 3 8B",
+    "summary": "Meta最新，指令遵循优秀，适合代码生成。8B量化后仅需4G显存。",
+    "tags": ["免费商用", "推理快", "多语言", "中文稍弱"],
+    "updatedAt": "2026-02-20T00:00:00Z",
+    "sourceType": "internal"
+  },
+  {
+    "id": "model-2",
+    "type": "models",
+    "title": "Qwen2.5 7B",
+    "summary": "阿里通义千问家族，代码能力接近GPT-3.5，对中文开发场景极友好。",
+    "tags": ["中文强", "中文理解顶尖", "长上下文", "工具调用待完善"],
+    "updatedAt": "2026-02-20T00:00:00Z",
+    "sourceType": "internal"
+  },
+  {
+    "id": "model-3",
+    "type": "models",
+    "title": "Gemma 7B",
+    "summary": "适合移动端/本地部署，在代码生成上表现稳定。",
+    "tags": ["轻量", "谷歌出品", "安全对齐高", "知识截止早"],
+    "updatedAt": "2026-02-20T00:00:00Z",
+    "sourceType": "internal"
+  },
+  {
+    "id": "model-4",
+    "type": "models",
+    "title": "ChatGLM3-6B",
+    "summary": "智谱AI，支持工具调用，适合中文对话和简单代码任务。",
+    "tags": ["国产", "中英双语好", "联网搜索", "推理速度稍慢"],
+    "updatedAt": "2026-02-20T00:00:00Z",
+    "sourceType": "internal"
+  }
+]

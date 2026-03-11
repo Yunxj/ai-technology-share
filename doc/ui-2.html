@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI提效工坊 · 研发内部分享 v2</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Inter", system-ui, -apple-system, sans-serif; background-color: #f5f7fb; color: #1e293b; line-height: 1.5; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
+        /* 导航栏 */
+        .navbar { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; border-bottom: 1px solid rgba(0,0,0,0.05); flex-wrap: wrap; gap: 16px; }
+        .logo-area { display: flex; align-items: center; gap: 8px; }
+        .logo-icon { background: linear-gradient(145deg, #2563eb, #7c3aed); width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; }
+        .logo-text { font-weight: 700; font-size: 1.4rem; letter-spacing: -0.02em; background: linear-gradient(to right, #1e293b, #334155); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .badge-internal { background-color: #e2e8f0; color: #475569; font-size: 0.7rem; font-weight: 600; padding: 2px 8px; border-radius: 30px; margin-left: 8px; }
+        .nav-links { display: flex; gap: 24px; font-weight: 500; color: #334155; }
+        .nav-links a { text-decoration: none; color: inherit; font-size: 0.95rem; transition: color 0.2s; }
+        .nav-links a:hover { color: #2563eb; }
+        .nav-links .active { color: #2563eb; font-weight: 600; border-bottom: 2px solid #2563eb; padding-bottom: 4px; }
+        .nav-links .phase2 { color: #94a3b8; font-size: 0.8rem; }
+        .nav-right { display: flex; align-items: center; gap: 16px; }
+        .search-box { background: white; border-radius: 40px; padding: 8px 16px; display: flex; align-items: center; gap: 8px; border: 1px solid #e2e8f0; box-shadow: 0 2px 6px rgba(0,0,0,0.02); }
+        .search-box i { color: #94a3b8; font-size: 0.9rem; }
+        .search-box input { border: none; background: transparent; outline: none; font-size: 0.9rem; width: 200px; }
+        .search-box input::placeholder { color: #94a3b8; }
+        .search-box:focus-within { border-color: #2563eb; box-shadow: 0 0 0 2px rgba(37,99,235,0.2); }
+
+        /* Banner */
+        .banner { background: linear-gradient(105deg, #0b1e33 0%, #1e2b47 100%); border-radius: 28px; padding: 40px 48px; margin: 32px 0 24px; color: white; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+        .banner h1 { font-size: 2.2rem; font-weight: 700; line-height: 1.2; max-width: 600px; }
+        .banner h1 span { background: linear-gradient(135deg, #fbbf24, #f59e0b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .banner p { color: #b0c4de; margin-top: 12px; font-size: 1.1rem; max-width: 500px; }
+        .banner-illustration { background: rgba(255,255,255,0.05); border-radius: 50px; padding: 16px 24px; backdrop-filter: blur(4px); font-size: 2rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); }
+
+        /* 岗位入口 */
+        .role-grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin: 40px 0 32px; }
+        .role-item { background: white; border-radius: 28px; padding: 20px 32px; flex: 1 1 160px; min-width: 140px; text-align: center; box-shadow: 0 8px 20px -6px rgba(0,0,0,0.08); transition: transform 0.15s, box-shadow 0.2s; border: 1px solid #f0f2f5; }
+        .role-item:hover { transform: translateY(-3px); box-shadow: 0 16px 24px -8px rgba(37,99,235,0.15); border-color: #b3d0ff; }
+        .role-item.disabled { opacity: 0.7; pointer-events: none; }
+        .role-icon { font-size: 2.5rem; color: #2563eb; margin-bottom: 12px; }
+        .role-item.disabled .role-icon { color: #94a3b8; }
+        .role-item h3 { font-weight: 600; font-size: 1.2rem; }
+        .role-item .badge-soon { background-color: #f1f5f9; color: #64748b; font-size: 0.7rem; font-weight: 600; padding: 4px 8px; border-radius: 40px; display: inline-block; margin-top: 8px; }
+        .role-item.dev .badge-soon { background-color: #dbeafe; color: #2563eb; }
+
+        /* 主内容 */
+        .main-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 28px; margin: 24px 0 48px; }
+        .section-title { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+        .section-title h2 { font-size: 1.3rem; font-weight: 600; color: #0f172a; }
+        .section-title a { color: #2563eb; font-size: 0.9rem; text-decoration: none; font-weight: 500; }
+        .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 32px; }
+        .article-card { background: white; border-radius: 20px; padding: 20px; box-shadow: 0 6px 14px rgba(0,0,0,0.02); border: 1px solid #edf2f7; transition: all 0.2s; text-decoration: none; color: inherit; display: block; }
+        .article-card:hover { border-color: #cbd5e1; box-shadow: 0 12px 20px -12px rgba(0,0,0,0.12); }
+        .article-card.external { border-left: 4px solid #0089ff; }
+        .article-tag { display: inline-block; background: #e0f2fe; color: #0369a1; font-size: 0.7rem; font-weight: 600; padding: 4px 10px; border-radius: 40px; margin-bottom: 12px; }
+        .article-tag.dingtalk { background: #e0f7ff; color: #0089ff; }
+        .article-tag.dingtalk::after { content: " \f35d"; font-family: "Font Awesome 6 Free"; font-weight: 900; font-size: 0.65rem; margin-left: 4px; }
+        .article-card h3 { font-weight: 600; font-size: 1.1rem; margin-bottom: 8px; line-height: 1.4; display: flex; align-items: center; gap: 8px; }
+        .article-card h3 .ext-icon { color: #94a3b8; font-size: 0.8rem; }
+        .article-meta { display: flex; align-items: center; gap: 12px; font-size: 0.8rem; color: #64748b; margin: 16px 0 8px; flex-wrap: wrap; }
+        .article-meta i { margin-right: 4px; }
+        .like { color: #ef4444; }
+        .article-meta .updated { color: #94a3b8; font-size: 0.75rem; }
+
+        /* 团队AI建设 */
+        .team-section { margin-bottom: 32px; }
+        .share-card { background: white; border-radius: 16px; padding: 16px 20px; margin-bottom: 12px; border: 1px solid #edf2f7; display: flex; align-items: flex-start; gap: 16px; text-decoration: none; color: inherit; transition: all 0.2s; }
+        .share-card:hover { border-color: #cbd5e1; }
+        .share-card.external { border-left: 4px solid #0089ff; }
+        .share-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(145deg, #2563eb, #7c3aed); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; flex-shrink: 0; }
+        .share-meta { font-size: 0.8rem; color: #64748b; margin-bottom: 4px; }
+        .share-title { font-weight: 600; font-size: 1rem; margin-bottom: 4px; }
+        .share-desc { font-size: 0.85rem; color: #475569; }
+
+        /* AI编辑器 */
+        .editor-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+        .editor-card { background: white; border-radius: 20px; padding: 20px; border: 1px solid #edf2f7; transition: all 0.2s; text-decoration: none; color: inherit; display: block; }
+        .editor-card:hover { border-color: #cbd5e1; box-shadow: 0 8px 20px -8px rgba(37,99,235,0.15); }
+        .editor-card .editor-name { font-weight: 700; font-size: 1.1rem; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .editor-card .editor-icon { width: 32px; height: 32px; border-radius: 8px; background: #e0f2fe; color: #0369a1; display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+        .editor-card .editor-desc { font-size: 0.85rem; color: #475569; margin-bottom: 12px; }
+        .editor-card .editor-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+        .editor-tag { background: #f1f5f9; color: #475569; font-size: 0.7rem; padding: 4px 10px; border-radius: 20px; }
+
+        .model-card { background: white; border-radius: 20px; padding: 18px; border: 1px solid #edf2f7; box-shadow: 0 4px 10px rgba(0,0,0,0.02); transition: 0.1s; }
+        .model-name { font-weight: 700; font-size: 1.1rem; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+        .model-badge { background: #e6f7e6; color: #2e7d32; font-size: 0.65rem; font-weight: 600; padding: 2px 8px; border-radius: 20px; }
+        .model-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 8px; }
+        .tag-pros { background: #dcfce7; color: #166534; font-size: 0.7rem; padding: 4px 10px; border-radius: 30px; }
+        .tag-cons { background: #fee2e2; color: #991b1b; font-size: 0.7rem; padding: 4px 10px; border-radius: 30px; }
+        .model-desc { font-size: 0.85rem; color: #475569; margin: 12px 0 8px; }
+        .model-link { font-size: 0.85rem; color: #2563eb; text-decoration: none; font-weight: 500; }
+
+        /* 知识库入口 */
+        .kb-entry { background: #f8fafc; border-radius: 20px; padding: 20px 24px; margin-bottom: 24px; border: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+        .kb-entry h3 { font-size: 1.1rem; font-weight: 600; color: #0f172a; }
+        .kb-entry p { font-size: 0.9rem; color: #64748b; margin-top: 4px; }
+        .kb-entry a { color: #2563eb; font-weight: 500; text-decoration: none; font-size: 0.95rem; }
+
+        /* 侧边栏 */
+        .sidebar-card { background: white; border-radius: 24px; padding: 24px 20px; margin-bottom: 28px; box-shadow: 0 6px 18px rgba(0,0,0,0.03); border: 1px solid #f0f4f9; }
+        .sidebar-title { font-weight: 600; font-size: 1.1rem; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+        .tip-list { list-style: none; }
+        .tip-list li { display: flex; align-items: flex-start; gap: 12px; padding: 14px 0; border-bottom: 1px solid #f1f5f9; }
+        .tip-list li:last-child { border-bottom: none; }
+        .tip-list i { color: #2563eb; font-size: 1rem; margin-top: 3px; }
+        .tip-list .tip-content { font-size: 0.95rem; font-weight: 500; }
+        .tip-list .tip-desc { font-size: 0.8rem; color: #64748b; display: block; margin-top: 4px; }
+        .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 8px; }
+        .tool-item { background: #f8fafc; border-radius: 16px; padding: 14px 8px; text-align: center; font-size: 0.9rem; font-weight: 500; border: 1px solid #e9eef3; transition: 0.1s; }
+        .tool-item i { font-size: 1.4rem; display: block; margin-bottom: 6px; color: #2563eb; }
+        .tool-item:hover { background: #eef2ff; border-color: #a5c0fa; }
+        .tags-cloud { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 8px; }
+        .tag { background: #f1f4f9; border-radius: 30px; padding: 6px 14px; font-size: 0.8rem; font-weight: 500; color: #2c3e50; transition: 0.1s; }
+        .tag:hover { background: #2563eb; color: white; cursor: pointer; }
+        .btn-contribute { background: linear-gradient(to right, #2563eb, #4f46e5); color: white; border: none; border-radius: 40px; padding: 14px 24px; font-weight: 600; font-size: 1rem; width: 100%; margin-top: 20px; cursor: pointer; transition: opacity 0.2s; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 6px 14px #2563eb40; }
+        .btn-contribute:hover { opacity: 0.9; }
+
+        /* 搜索页 */
+        .page-section { display: none; }
+        .page-section.active { display: block; }
+        .search-page .search-hero { text-align: center; padding: 48px 0 32px; }
+        .search-hero .search-box { margin: 0 auto 24px; width: 100%; max-width: 480px; padding: 12px 20px; }
+        .search-hero .search-box input { width: 100%; font-size: 1rem; }
+        .search-results { margin-top: 24px; }
+        .search-result-item { background: white; border-radius: 16px; padding: 20px; margin-bottom: 12px; border: 1px solid #edf2f7; display: flex; align-items: flex-start; gap: 16px; text-decoration: none; color: inherit; transition: all 0.2s; }
+        .search-result-item:hover { border-color: #cbd5e1; }
+        .search-result-item .result-type { font-size: 0.7rem; font-weight: 600; color: #64748b; text-transform: uppercase; margin-bottom: 4px; }
+        .search-result-item .result-title { font-weight: 600; font-size: 1rem; margin-bottom: 6px; }
+        .search-result-item .result-desc { font-size: 0.85rem; color: #64748b; }
+        .search-result-item .result-ext { color: #0089ff; font-size: 0.8rem; }
+
+        /* 底部 */
+        .footer { text-align: center; padding: 32px 0; border-top: 1px solid #e2e8f0; font-size: 0.9rem; color: #64748b; margin-top: 20px; }
+        .footer a { color: #64748b; text-decoration: none; }
+        .footer a:hover { color: #2563eb; }
+
+        @media (max-width: 800px) {
+            .main-grid { grid-template-columns: 1fr; }
+            .card-grid { grid-template-columns: 1fr; }
+            .editor-grid { grid-template-columns: 1fr; }
+            .banner { padding: 30px 20px; }
+            .navbar { flex-direction: column; align-items: stretch; }
+            .nav-links { flex-wrap: wrap; gap: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 导航栏 v2: 首页 | 研发AI | 知识库 | 关于 | 更多岗位(二期) -->
+        <nav class="navbar">
+            <div class="logo-area">
+                <div class="logo-icon"><i class="fas fa-robot"></i></div>
+                <span class="logo-text">AI提效工坊</span>
+                <span class="badge-internal">内部 · 研发版</span>
+            </div>
+            <div class="nav-links">
+                <a href="#home" class="active">首页</a>
+                <a href="#dev">研发AI</a>
+                <a href="#kb">知识库</a>
+                <a href="#about">关于</a>
+                <a href="#" class="phase2">更多岗位 (二期)</a>
+            </div>
+            <div class="nav-right">
+                <form class="search-box" action="search.html" method="get" id="searchForm">
+                    <i class="fas fa-search"></i>
+                    <input type="text" name="q" placeholder="全局搜索技巧、模型、工具、钉钉文档..." id="searchInput">
+                </form>
+            </div>
+        </nav>
+
+        <!-- 首页内容 -->
+        <div id="home" class="page-section active">
+            <div class="banner">
+                <div>
+                    <h1>研发<span>AI提效</span> 专场</h1>
+                    <p>精选提示词、大模型对比、开源工具、钉钉文档 — 让AI成为你的日常开发伙伴</p>
+                </div>
+                <div class="banner-illustration">
+                    <i class="fas fa-bolt" style="color: #fbbf24;"></i> 效率翻倍
+                </div>
+            </div>
+
+            <div class="role-grid">
+                <a href="#dev" class="role-item dev" style="text-decoration:none;color:inherit;">
+                    <div class="role-icon"><i class="fas fa-code"></i></div>
+                    <h3>研发</h3>
+                    <span class="badge-soon"><i class="fas fa-fire" style="color:#f97316;"></i> 热门·提效</span>
+                </a>
+                <div class="role-item disabled">
+                    <div class="role-icon"><i class="fas fa-vial"></i></div>
+                    <h3>测试</h3>
+                    <span class="badge-soon">二期 筹备中</span>
+                </div>
+                <div class="role-item disabled">
+                    <div class="role-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>产品</h3>
+                    <span class="badge-soon">二期 筹备中</span>
+                </div>
+                <div class="role-item disabled">
+                    <div class="role-icon"><i class="fas fa-paint-brush"></i></div>
+                    <h3>UI设计</h3>
+                    <span class="badge-soon">二期 筹备中</span>
+                </div>
+            </div>
+
+            <!-- 知识库入口 -->
+            <div class="kb-entry">
+                <div>
+                    <h3><i class="fas fa-book" style="color:#2563eb;margin-right:8px;"></i>研发AI知识库</h3>
+                    <p>研发技巧、大模型评测、工具推荐、钉钉文档 — 管理后台录入，支持持续更新</p>
+                </div>
+                <a href="#kb">进入知识库 <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="main-grid">
+                <div>
+                    <!-- 团队日常AI建设 -->
+                    <div class="section-title team-section">
+                        <h2><i class="fas fa-users" style="color: #7c3aed; margin-right: 8px;"></i>团队AI建设</h2>
+                        <a href="#kb?cat=team">查看全部 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="share-card">
+                        <div class="share-avatar">张</div>
+                        <div style="flex:1;">
+                            <div class="share-meta"><i class="fas fa-calendar-alt"></i> 2025-02-20 · 研发周会分享</div>
+                            <div class="share-title">Cursor 多文件重构实战</div>
+                            <div class="share-desc">分享人：张工 · 结合真实项目演示 Cursor 的 Composer 模式批量修改代码</div>
+                        </div>
+                    </div>
+                    <a href="#" class="share-card external" target="_blank">
+                        <div class="share-avatar" style="background:#0089ff;"><i class="fas fa-file-alt"></i></div>
+                        <div style="flex:1;">
+                            <div class="share-meta"><i class="fas fa-link"></i> 钉钉群 · AI探索文档</div>
+                            <div class="share-title">研发群 AI 提效案例汇总 <i class="fas fa-external-link-alt" style="font-size:0.7rem;color:#94a3b8;"></i></div>
+                            <div class="share-desc">群内同事整理的 AI 使用技巧与踩坑记录，持续更新</div>
+                        </div>
+                    </a>
+                    <a href="#" class="share-card">
+                        <div class="share-avatar">李</div>
+                        <div style="flex:1;">
+                            <div class="share-meta"><i class="fas fa-calendar-alt"></i> 2025-02-15 · 技术分享会</div>
+                            <div class="share-title">Claude Code 与本地模型对比</div>
+                            <div class="share-desc">分享人：李艾 · 对比 Claude、Qwen 在代码生成场景的表现</div>
+                        </div>
+                    </a>
+
+                    <!-- AI编辑器使用技巧 -->
+                    <div class="section-title" style="margin-top: 28px;">
+                        <h2><i class="fas fa-code" style="color: #2563eb; margin-right: 8px;"></i>AI 编辑器使用技巧</h2>
+                        <a href="#kb?cat=editors">查看全部 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="editor-grid" style="margin-bottom: 32px;">
+                        <a href="#" class="editor-card">
+                            <div class="editor-name"><span class="editor-icon"><i class="fas fa-terminal"></i></span> Cursor</div>
+                            <div class="editor-desc">基于 VSCode，Composer 多文件编辑、@ 引用上下文，适合日常开发</div>
+                            <div class="editor-tags"><span class="editor-tag">多文件</span><span class="editor-tag">Composer</span></div>
+                        </a>
+                        <a href="#" class="editor-card">
+                            <div class="editor-name"><span class="editor-icon"><i class="fas fa-robot"></i></span> Claude Code</div>
+                            <div class="editor-desc">Cursor 内置 Claude，代码解释与生成表现优秀</div>
+                            <div class="editor-tags"><span class="editor-tag">Claude</span><span class="editor-tag">解释</span></div>
+                        </a>
+                        <a href="#" class="editor-card">
+                            <div class="editor-name"><span class="editor-icon"><i class="fas fa-code-branch"></i></span> Open Code</div>
+                            <div class="editor-desc">开源 AI 编程助手，支持本地模型接入</div>
+                            <div class="editor-tags"><span class="editor-tag">开源</span><span class="editor-tag">本地</span></div>
+                        </a>
+                        <a href="#" class="editor-card">
+                            <div class="editor-name"><span class="editor-icon"><i class="fas fa-bolt"></i></span> Kiro</div>
+                            <div class="editor-desc">轻量 AI 助手，快速代码补全与对话</div>
+                            <div class="editor-tags"><span class="editor-tag">轻量</span><span class="editor-tag">补全</span></div>
+                        </a>
+                    </div>
+
+                    <div class="section-title">
+                        <h2><i class="fas fa-lightbulb" style="color: #f59e0b; margin-right: 8px;"></i>热门研发技巧</h2>
+                        <a href="#kb?cat=tips">查看全部 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="card-grid">
+                        <a href="#" class="article-card">
+                            <span class="article-tag"><i class="fas fa-magic"></i> 提示词工程</span>
+                            <h3>用AI将遗留代码重构为现代Java的5个提示</h3>
+                            <div class="article-meta">
+                                <span><i class="fas fa-user"></i> 张工</span>
+                                <span><i class="fas fa-eye"></i> 342</span>
+                                <span><i class="fas fa-thumbs-up like"></i> 56</span>
+                                <span class="updated"><i class="fas fa-clock"></i> 2-22 更新</span>
+                            </div>
+                            <p style="font-size:0.9rem; color:#475569;">结合Claude + 自定义指令，两周老旧模块重构节省8人日...</p>
+                        </a>
+                        <a href="#" class="article-card external">
+                            <span class="article-tag dingtalk"><i class="fas fa-file-alt"></i> 钉钉文档</span>
+                            <h3>AI辅助CodeReview实践指南 <i class="fas fa-external-link-alt ext-icon"></i></h3>
+                            <div class="article-meta">
+                                <span><i class="fas fa-link"></i> 钉钉文档</span>
+                                <span class="updated"><i class="fas fa-clock"></i> 2-20 更新</span>
+                            </div>
+                            <p style="font-size:0.9rem; color:#475569;">团队内部整理的CodeReview提效手册，点击跳转钉钉...</p>
+                        </a>
+                        <a href="#" class="article-card">
+                            <span class="article-tag"><i class="fas fa-flask"></i> 单元测试</span>
+                            <h3>自动生成高覆盖单元测试：GPT-4 实践</h3>
+                            <div class="article-meta">
+                                <span><i class="fas fa-user"></i> 李艾</span>
+                                <span><i class="fas fa-eye"></i> 287</span>
+                                <span><i class="fas fa-thumbs-up like"></i> 41</span>
+                                <span class="updated"><i class="fas fa-clock"></i> 2-18 更新</span>
+                            </div>
+                            <p style="font-size:0.9rem; color:#475569;">通过上下文注入，为Python/Java生成边界测试用例...</p>
+                        </a>
+                        <a href="#" class="article-card external">
+                            <span class="article-tag dingtalk"><i class="fas fa-file-alt"></i> 钉钉文档</span>
+                            <h3>Qwen本地部署与Continue插件配置 <i class="fas fa-external-link-alt ext-icon"></i></h3>
+                            <div class="article-meta">
+                                <span><i class="fas fa-link"></i> 钉钉文档</span>
+                                <span class="updated"><i class="fas fa-clock"></i> 2-15 更新</span>
+                            </div>
+                            <p style="font-size:0.9rem; color:#475569;">内网环境下的本地模型部署步骤...</p>
+                        </a>
+                    </div>
+
+                    <div class="section-title" style="margin-top: 8px;">
+                        <h2><i class="fas fa-chart-simple" style="color: #2563eb;"></i> 主流免费大模型优劣对比</h2>
+                        <a href="#kb?cat=models">详细评测 <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="card-grid">
+                        <div class="model-card">
+                            <div class="model-name">Llama 3 8B <span class="model-badge">免费商用</span></div>
+                            <div class="model-tags">
+                                <span class="tag-pros">推理快</span>
+                                <span class="tag-pros">多语言</span>
+                                <span class="tag-cons">中文稍弱</span>
+                            </div>
+                            <div class="model-desc">Meta最新，指令遵循优秀，适合代码生成。8B量化后仅需4G显存。</div>
+                            <a href="#" class="model-link">查看评测 ›</a>
+                        </div>
+                        <div class="model-card">
+                            <div class="model-name">Qwen2.5 7B <span class="model-badge">中文强</span></div>
+                            <div class="model-tags">
+                                <span class="tag-pros">中文理解顶尖</span>
+                                <span class="tag-pros">长上下文</span>
+                                <span class="tag-cons">工具调用待完善</span>
+                            </div>
+                            <div class="model-desc">阿里通义千问家族，代码能力接近GPT-3.5，对中文开发场景极友好。</div>
+                            <a href="#" class="model-link">查看评测 ›</a>
+                        </div>
+                        <div class="model-card">
+                            <div class="model-name">Gemma 7B <span class="model-badge">轻量</span></div>
+                            <div class="model-tags">
+                                <span class="tag-pros">谷歌出品</span>
+                                <span class="tag-pros">安全对齐高</span>
+                                <span class="tag-cons">知识截止早</span>
+                            </div>
+                            <div class="model-desc">适合移动端/本地部署，在代码生成上表现稳定。</div>
+                            <a href="#" class="model-link">查看评测 ›</a>
+                        </div>
+                        <div class="model-card">
+                            <div class="model-name">ChatGLM3-6B <span class="model-badge">国产</span></div>
+                            <div class="model-tags">
+                                <span class="tag-pros">中英双语好</span>
+                                <span class="tag-pros">联网搜索</span>
+                                <span class="tag-cons">推理速度稍慢</span>
+                            </div>
+                            <div class="model-desc">智谱AI，支持工具调用，适合中文对话和简单代码任务。</div>
+                            <a href="#" class="model-link">查看评测 ›</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="sidebar-card">
+                        <div class="sidebar-title"><i class="fas fa-bolt" style="color: #f97316;"></i> AI使用技巧·速递</div>
+                        <ul class="tip-list">
+                            <li>
+                                <i class="fas fa-lightbulb"></i>
+                                <div>
+                                    <span class="tip-content">提示词中加入"让我们一步步思考"</span>
+                                    <span class="tip-desc">复杂任务推理能力提升30%</span>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-lightbulb"></i>
+                                <div>
+                                    <span class="tip-content">用ollama本地跑Qwen，配合continue.dev</span>
+                                    <span class="tip-desc">免费且隐私安全的IDE插件</span>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fas fa-lightbulb"></i>
+                                <div>
+                                    <span class="tip-content">为代码库建立RAG索引</span>
+                                    <span class="tip-desc">结合LlamaIndex快速问答遗留代码</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="sidebar-card">
+                        <div class="sidebar-title"><i class="fas fa-code"></i> AI 编辑器</div>
+                        <div class="tools-grid">
+                            <div class="tool-item"><i class="fas fa-terminal"></i> Cursor</div>
+                            <div class="tool-item"><i class="fas fa-robot"></i> Claude Code</div>
+                            <div class="tool-item"><i class="fas fa-code-branch"></i> Open Code</div>
+                            <div class="tool-item"><i class="fas fa-bolt"></i> Kiro</div>
+                            <div class="tool-item"><i class="fas fa-brain"></i> Ollama</div>
+                            <div class="tool-item"><i class="fas fa-database"></i> Continue</div>
+                        </div>
+                        <p style="font-size:0.8rem; color:#64748b; margin-top: 12px;">AI 编辑器使用技巧，点击进入详情</p>
+                    </div>
+                    <div class="sidebar-card">
+                        <div class="sidebar-title"><i class="fas fa-toolbox"></i> 其他开源工具</div>
+                        <div class="tools-grid">
+                            <div class="tool-item"><i class="fas fa-pencil-alt"></i> MarkEdit</div>
+                            <div class="tool-item"><i class="fas fa-project-diagram"></i> Draw.io</div>
+                            <div class="tool-item"><i class="fas fa-robot"></i> Dify</div>
+                            <div class="tool-item"><i class="fas fa-database"></i> LangChain</div>
+                        </div>
+                        <p style="font-size:0.8rem; color:#64748b; margin-top: 12px;">更多开源效率工具，欢迎推荐</p>
+                    </div>
+                    <div class="sidebar-card">
+                        <div class="sidebar-title"><i class="fas fa-tags"></i> 热门标签</div>
+                        <div class="tags-cloud">
+                            <span class="tag">#Cursor</span>
+                            <span class="tag">#AI编辑器</span>
+                            <span class="tag">#提示词</span>
+                            <span class="tag">#本地模型</span>
+                            <span class="tag">#单元测试</span>
+                            <span class="tag">#钉钉文档</span>
+                            <span class="tag">#会议分享</span>
+                            <span class="tag">#Qwen</span>
+                        </div>
+                    </div>
+                    <button class="btn-contribute"><i class="fas fa-plus-circle"></i> 分享你的AI技巧/工具</button>
+                    <p style="font-size:0.75rem; color:#94a3b8; margin-top: 12px; text-align: center;">采纳后将在首页展示，并获得内部积分</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 搜索页示意 (通过 hash 或独立页面展示) -->
+        <div id="search-demo" class="page-section" style="display:none;">
+            <div class="search-hero">
+                <h2 style="font-size:1.5rem;margin-bottom:12px;">全局搜索</h2>
+                <p style="color:#64748b;margin-bottom:24px;">搜索技巧、模型、工具、钉钉文档...</p>
+                <form class="search-box" style="margin:0 auto;">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="输入关键词..." value="提示词">
+                </form>
+            </div>
+            <div class="search-results">
+                <a href="#" class="search-result-item">
+                    <div style="flex:1;">
+                        <div class="result-type">研发技巧</div>
+                        <div class="result-title">用AI将遗留代码重构为现代Java的5个提示</div>
+                        <div class="result-desc">结合Claude + 自定义指令，两周老旧模块重构节省8人日...</div>
+                    </div>
+                </a>
+                <a href="#" class="search-result-item" target="_blank">
+                    <div style="flex:1;">
+                        <div class="result-type">钉钉文档</div>
+                        <div class="result-title">AI辅助CodeReview实践指南 <span class="result-ext">外链</span></div>
+                        <div class="result-desc">团队内部整理的CodeReview提效手册...</div>
+                    </div>
+                    <i class="fas fa-external-link-alt" style="color:#94a3b8;"></i>
+                </a>
+                <a href="#" class="search-result-item">
+                    <div style="flex:1;">
+                        <div class="result-type">大模型</div>
+                        <div class="result-title">Qwen2.5 7B 评测</div>
+                        <div class="result-desc">阿里通义千问家族，代码能力接近GPT-3.5...</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>© 2025 软件研发公司 · 内部AI场景技术分享站 · 一期研发提效版 <span style="margin:0 12px">|</span> 让AI落地每个岗位</p>
+            <p style="margin-top: 8px;">📢 测试/产品/UI 内容二期启动，欢迎贡献案例</p>
+            <p style="margin-top: 6px; font-size: 0.85rem;">数据由管理后台录入维护，支持会议分享、钉钉文档、AI编辑器技巧等持续更新</p>
+            <p style="margin-top: 12px;"><a href="/admin">管理后台</a></p>
+        </footer>
+    </div>
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', function(e) {
+            var q = document.getElementById('searchInput').value.trim();
+            if (!q) { e.preventDefault(); return false; }
+        });
+    </script>
+</body>
+</html>

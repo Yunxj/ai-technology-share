@@ -1,0 +1,38 @@
+[
+  {
+    "id": "tool-1",
+    "type": "tools",
+    "title": "MarkEdit",
+    "summary": "AI 辅助 Markdown 编辑工具",
+    "tags": ["Markdown", "编辑"],
+    "updatedAt": "2026-02-20T00:00:00Z",
+    "sourceType": "internal"
+  },
+  {
+    "id": "tool-2",
+    "type": "tools",
+    "title": "Draw.io",
+    "summary": "流程图与图表绘制工具",
+    "tags": ["流程图", "图表"],
+    "updatedAt": "2026-02-20T00:00:00Z",
+    "sourceType": "internal"
+  },
+  {
+    "id": "tool-3",
+    "type": "tools",
+    "title": "Dify",
+    "summary": "LLM 应用开发平台",
+    "tags": ["LLM", "应用"],
+    "updatedAt": "2026-02-20T00:00:00Z",
+    "sourceType": "internal"
+  },
+  {
+    "id": "tool-4",
+    "type": "tools",
+    "title": "LangChain",
+    "summary": "大模型应用开发框架",
+    "tags": ["框架", "LLM"],
+    "updatedAt": "2026-02-20T00:00:00Z",
+    "sourceType": "internal"
+  }
+]
