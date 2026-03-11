@@ -42,6 +42,19 @@ npm run build
 npm start
 ```
 
+## 部署到 GitHub 与 Vercel
+
+1. 在 [GitHub](https://github.com/new) 新建仓库，名称如 `ai-technology-share`，选择 Public
+2. 在本地执行：
+
+```bash
+git remote add origin https://github.com/YOUR_USERNAME/ai-technology-share.git
+git branch -M main
+git push -u origin main
+```
+
+3. 在 [Vercel](https://vercel.com) 导入该仓库，配置 `ADMIN_PASSWORD`、`DEEPSEEK_API_KEY` 等环境变量后即可自动部署
+
 ## 环境变量
 
 | 变量 | 说明 |
