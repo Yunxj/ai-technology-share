@@ -4,25 +4,36 @@
     "type": "editors",
     "title": "Cursor",
     "summary": "基于 VSCode，Composer 多文件编辑、@ 引用上下文，适合日常开发",
-    "tags": ["多文件", "Composer"],
+    "tags": [
+      "多文件",
+      "Composer"
+    ],
     "updatedAt": "2026-02-20T00:00:00Z",
-    "sourceType": "internal"
+    "sourceType": "internal",
+    "viewCount": 3
   },
   {
     "id": "ed-2",
     "type": "editors",
     "title": "Claude Code",
     "summary": "Cursor 内置 Claude，代码解释与生成表现优秀；推荐配合 Claude-Mem 解决上下文记忆、Superpowers 强化工作流",
-    "tags": ["Claude", "解释"],
+    "tags": [
+      "Claude",
+      "解释"
+    ],
     "updatedAt": "2026-02-20T00:00:00Z",
-    "sourceType": "internal"
+    "sourceType": "internal",
+    "viewCount": 2
   },
   {
     "id": "ed-3",
     "type": "editors",
     "title": "Open Code",
     "summary": "开源 AI 编程助手，支持本地模型接入",
-    "tags": ["开源", "本地"],
+    "tags": [
+      "开源",
+      "本地"
+    ],
     "updatedAt": "2026-02-20T00:00:00Z",
     "sourceType": "internal"
   },
@@ -31,7 +42,10 @@
     "type": "editors",
     "title": "Kiro",
     "summary": "轻量 AI 助手，快速代码补全与对话",
-    "tags": ["轻量", "补全"],
+    "tags": [
+      "轻量",
+      "补全"
+    ],
     "updatedAt": "2026-02-20T00:00:00Z",
     "sourceType": "internal"
   }
