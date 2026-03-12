@@ -26,6 +26,7 @@ export default function ActiveContributors({ config, allContent = [] }: ActiveCo
   const sorted = [...contributorsWithCounts].sort(
     (a, b) => b.counts.total - a.counts.total
   );
+  const displayed = sorted.filter((c) => c.counts.total > 0).slice(0, 15);
   const grandTotal = allContent.reduce(
     (acc, c) => {
       if (c.type === "tips" || c.type === "team") acc.shares += 1;
@@ -47,7 +48,7 @@ export default function ActiveContributors({ config, allContent = [] }: ActiveCo
         {grandTotal.shares + grandTotal.problems + grandTotal.tools}
       </div>
       <div className="space-y-3">
-        {sorted.map((c, i) => {
+        {displayed.map((c, i) => {
           const counts = c.counts;
           const label = `分享 ${counts.shares} · 问题 ${counts.problems} · 工具 ${counts.tools} · 合计 ${counts.total}`;
           return (
