@@ -34,7 +34,7 @@ export default async function OpenClawToolPage() {
 
   return (
     <main className="py-8">
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-[52rem] mx-auto">
         <BackButton
           fallbackHref="/kb?cat=tools"
           className="inline-flex items-center gap-2 text-slate-600 hover:text-primary mb-6"

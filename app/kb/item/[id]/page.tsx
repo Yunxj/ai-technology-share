@@ -40,7 +40,7 @@ export default async function KbItemPage({
   return (
     <main className="py-8">
       <ViewTracker contentId={id} />
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-[52rem] mx-auto">
         <BackButton
           fallbackHref="/kb"
           className="inline-flex items-center gap-2 text-slate-600 hover:text-primary mb-6"

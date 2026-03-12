@@ -136,7 +136,7 @@ export default async function DocPage({
   return (
     <main className="py-8">
       {docContent && <ViewTracker contentId={docContent.id} />}
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-[52rem] mx-auto">
         <div className="mb-6 px-4 py-2 rounded-lg bg-white/80 border border-slate-100 flex items-center justify-between gap-4 flex-wrap">
           <BackButton
             fallbackHref="/kb"
