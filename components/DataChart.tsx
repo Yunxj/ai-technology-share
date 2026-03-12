@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { Eye, Heart, FileText, User } from "lucide-react";
 import {
   BarChart,
@@ -42,6 +44,52 @@ export default function DataChart({
   totalArticles = 0,
   contributorCount = 0,
 }: DataChartProps) {
+  const pathname = usePathname();
+  const [liveStats, setLiveStats] = useState<{
+    totalViews: number;
+    totalLikes: number;
+    totalArticles: number;
+    contributorCount: number;
+  } | null>(null);
+
+  useEffect(() => {
+    if (pathname !== "/" && pathname !== "/dev") return;
+    fetch("/api/stats")
+      .then((r) => r.json())
+      .then((d) => setLiveStats(d))
+      .catch(() => {});
+  }, [pathname]);
+
+  useEffect(() => {
+    const onVisible = () => {
+      if (document.visibilityState === "visible" && (pathname === "/" || pathname === "/dev")) {
+        fetch("/api/stats")
+          .then((r) => r.json())
+          .then((d) => setLiveStats(d))
+          .catch(() => {});
+      }
+    };
+    const onPageShow = (e: PageTransitionEvent) => {
+      if (e.persisted && (pathname === "/" || pathname === "/dev")) {
+        fetch("/api/stats")
+          .then((r) => r.json())
+          .then((d) => setLiveStats(d))
+          .catch(() => {});
+      }
+    };
+    document.addEventListener("visibilitychange", onVisible);
+    window.addEventListener("pageshow", onPageShow);
+    return () => {
+      document.removeEventListener("visibilitychange", onVisible);
+      window.removeEventListener("pageshow", onPageShow);
+    };
+  }, [pathname]);
+
+  const displayViews = liveStats?.totalViews ?? totalViews;
+  const displayLikes = liveStats?.totalLikes ?? totalLikes;
+  const displayArticles = liveStats?.totalArticles ?? totalArticles;
+  const displayContributors = liveStats?.contributorCount ?? contributorCount;
+
   const chartData = stats.map((s) => ({
     name: TYPE_LABELS[s.type] ?? s.type,
     count: s.count,
@@ -60,28 +108,28 @@ export default function DataChart({
             <Eye className="w-4 h-4" />
             总浏览量
           </p>
-          <p className="text-2xl font-bold text-primary">{totalViews}</p>
+          <p className="text-2xl font-bold text-primary">{displayViews}</p>
         </div>
         <div>
           <p className="text-slate-500 text-sm flex items-center gap-1 mb-0.5">
             <Heart className="w-4 h-4" />
             总点赞数
           </p>
-          <p className="text-2xl font-bold text-primary">{totalLikes}</p>
+          <p className="text-2xl font-bold text-primary">{displayLikes}</p>
         </div>
         <div>
           <p className="text-slate-500 text-sm flex items-center gap-1 mb-0.5">
             <FileText className="w-4 h-4" />
             总文章数
           </p>
-          <p className="text-2xl font-bold text-primary">{totalArticles}</p>
+          <p className="text-2xl font-bold text-primary">{displayArticles}</p>
         </div>
         <div>
           <p className="text-slate-500 text-sm flex items-center gap-1 mb-0.5">
             <User className="w-4 h-4" />
             贡献者
           </p>
-          <p className="text-2xl font-bold text-primary">{contributorCount}</p>
+          <p className="text-2xl font-bold text-primary">{displayContributors}</p>
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

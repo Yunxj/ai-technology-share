@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.19",
+    "@upstash/ratelimit": "^2.0.8",
+    "@upstash/redis": "^1.36.4",
     "lucide-react": "^0.460.0",
     "nanoid": "^5.1.6",
     "next": "14.2.18",

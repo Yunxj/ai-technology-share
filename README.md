@@ -4,7 +4,7 @@
 
 AI 运用场景技术分享网站，一期聚焦研发 AI 内容。可 Fork 后用于团队内部分享或二次开发。
 
-> **在线演示**：部署到 [Vercel](https://vercel.com) 后，将此处替换为你的演示链接，例如 `https://ai-technology-share.vercel.app`
+> **在线演示**：部署后在此替换为你的演示链接（见下方部署说明）
 
 ## 功能
 
@@ -42,7 +42,7 @@ npm run build
 npm start
 ```
 
-## 部署到 GitHub 与 Vercel
+## 部署到 GitHub 与托管平台
 
 1. 在 [GitHub](https://github.com/new) 新建仓库，名称如 `ai-technology-share`，选择 Public
 2. 在本地执行：
@@ -53,7 +53,13 @@ git branch -M main
 git push -u origin main
 ```
 
-3. 在 [Vercel](https://vercel.com) 导入该仓库，配置 `ADMIN_PASSWORD`、`DEEPSEEK_API_KEY` 等环境变量后即可自动部署
+3. 选择以下任一平台导入该仓库，配置 `ADMIN_PASSWORD`、`DEEPSEEK_API_KEY` 等环境变量后即可自动部署：
+
+| 平台 | 说明 | 链接 |
+|------|------|------|
+| **腾讯云 EdgeOne Pages** | 国内版 Vercel，公测免费，GitHub 集成，国内访问快 | [控制台](https://console.cloud.tencent.com/edgeone) · [详细操作指南](doc/EdgeOne-Pages-部署指南.md) |
+| **Zeabur** | 支持 Next.js，免费额度 + .zeabur.app 域名 | [zeabur.com](https://zeabur.com) |
+| **Render** | 免费 tier，支持 Node.js/Next.js | [render.com](https://render.com) |
 
 ## 环境变量
 

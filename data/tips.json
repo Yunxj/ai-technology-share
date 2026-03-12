@@ -4,23 +4,31 @@
     "type": "tips",
     "title": "提升 AI 对话效果：资料齐全与 Prompt 技巧",
     "summary": "AI 对话需资料齐全、描述清晰。善用提示词五要素：角色设定、任务描述、背景信息、输出格式、示例参考；Few-shot 与思维链可显著提升输出质量；结构化组织、迭代优化是关键。",
-    "tags": ["提示词工程", "AI对话", "Prompt"],
+    "tags": [
+      "提示词工程",
+      "AI对话",
+      "Prompt"
+    ],
     "updatedAt": "2026-03-11T00:00:00Z",
     "sourceType": "internal",
     "internalHref": "/doc/ai-dialogue-prompt",
-    "viewCount": 0,
-    "likeCount": 0
+    "viewCount": 5,
+    "likeCount": 1
   },
   {
     "id": "tip-2",
     "type": "tips",
     "title": "需求开发先规划：功能拆分与 Cursor Plan 模式",
     "summary": "需求开发时将大功能拆成多个小功能，开发前理清思路。使用 Cursor Plan 模式：自动调研代码库、生成 Markdown 计划、可编辑调整、一键执行；适合多文件联动、代码重构等复杂任务，减少返工。",
-    "tags": ["Cursor", "Plan模式", "需求拆分"],
+    "tags": [
+      "Cursor",
+      "Plan模式",
+      "需求拆分"
+    ],
     "updatedAt": "2026-03-11T00:00:00Z",
     "sourceType": "internal",
     "internalHref": "/doc/plan-mode-requirement-split",
-    "viewCount": 0,
-    "likeCount": 0
+    "viewCount": 4,
+    "likeCount": 1
   }
 ]

@@ -12,6 +12,7 @@ import {
   Layout,
 } from "lucide-react";
 import ArticleCard from "@/components/ArticleCard";
+import LiveTipCards from "@/components/LiveTipCards";
 import EditorCard from "@/components/EditorCard";
 import ShareCard from "@/components/ShareCard";
 import Sidebar from "@/components/Sidebar";
@@ -235,22 +236,7 @@ export default function HomeContent({
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 my-8">
         <div className="lg:col-span-2 space-y-6">
           {/* 1. 热门研发技巧 */}
-          <div>
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-semibold text-slate-900 flex items-center gap-2">
-                <Lightbulb className="w-5 h-5 text-amber-500" />
-                热门研发技巧
-              </h2>
-              <Link href="/dev" className="text-primary text-sm font-medium">
-                进入研发AI →
-              </Link>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {tipCards.map((item) => (
-                <ArticleCard key={item.id} item={item} />
-              ))}
-            </div>
-          </div>
+          <LiveTipCards initialTipCards={tipCards} />
 
           {/* 2. 研发AI知识库 */}
           <div>

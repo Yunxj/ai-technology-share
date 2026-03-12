@@ -59,6 +59,13 @@ export async function getContentById(
   return all.find((item) => item.id === id) ?? null;
 }
 
+export async function getContentByInternalHref(
+  path: string
+): Promise<ContentItem | null> {
+  const all = await getAllContent();
+  return all.find((item) => item.internalHref === path) ?? null;
+}
+
 export async function saveContent(
   type: ContentType,
   items: ContentItem[]

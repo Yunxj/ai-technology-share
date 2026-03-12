@@ -2,6 +2,8 @@ import { getContentById } from "@/lib/data";
 import Link from "next/link";
 import { User, Calendar, ExternalLink, FileText } from "lucide-react";
 import BackButton from "@/components/BackButton";
+import ViewTracker from "@/components/ViewTracker";
+import LikeButton from "@/components/LikeButton";
 import type { ContentType } from "@/types/content";
 
 const TYPE_LABELS: Record<ContentType, string> = {
@@ -37,6 +39,7 @@ export default async function KbItemPage({
 
   return (
     <main className="py-8">
+      <ViewTracker contentId={id} />
       <div className="max-w-2xl mx-auto">
         <BackButton
           fallbackHref="/kb"
@@ -49,13 +52,14 @@ export default async function KbItemPage({
           </span>
           <h1 className="text-2xl font-bold text-slate-900 mb-4">{item.title}</h1>
 
-          <div className="flex flex-wrap gap-4 text-sm text-slate-500 mb-6">
+          <div className="flex flex-wrap gap-4 text-sm text-slate-500 mb-6 items-center">
             {item.author && (
               <span className="flex items-center gap-1">
                 <User className="w-4 h-4" />
                 {item.author}
               </span>
             )}
+            <LikeButton contentId={id} initialCount={item.likeCount ?? 0} />
             {item.shareDate && (
               <span className="flex items-center gap-1">
                 <Calendar className="w-4 h-4" />
