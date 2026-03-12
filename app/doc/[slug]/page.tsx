@@ -6,6 +6,7 @@ import ViewTracker from "@/components/ViewTracker";
 import LikeButton from "@/components/LikeButton";
 import { getContentByInternalHref } from "@/lib/data";
 import remarkGfm from "remark-gfm";
+import { ExternalLink } from "lucide-react";
 import type { Components } from "react-markdown";
 
 const SLUG_TO_FILE: Record<string, string> = {
@@ -14,6 +15,8 @@ const SLUG_TO_FILE: Record<string, string> = {
   "ai-tool-practice-migration": "AI工具实践与迁移评审.md",
   "ai-dialogue-prompt": "提升AI对话效果-资料齐全与Prompt技巧.md",
   "plan-mode-requirement-split": "需求开发先规划-功能拆分与Plan模式.md",
+  "claude-code-mastery": "Claude-Code-一篇带你从入门到精通.md",
+  "zhanglei-claude-code": "张磊-Claude-Code使用心得.md",
 };
 
 const markdownComponents: Components = {
@@ -134,14 +137,40 @@ export default async function DocPage({
     <main className="py-8">
       {docContent && <ViewTracker contentId={docContent.id} />}
       <div className="max-w-2xl mx-auto">
-        <div className="mb-6 px-4 py-2 rounded-lg bg-white/80 border border-slate-100 flex items-center justify-between gap-4">
+        <div className="mb-6 px-4 py-2 rounded-lg bg-white/80 border border-slate-100 flex items-center justify-between gap-4 flex-wrap">
           <BackButton
             fallbackHref="/kb"
             className="inline-flex items-center gap-2 text-slate-600 hover:text-primary transition-colors"
           />
-          {docContent && (
-            <LikeButton contentId={docContent.id} initialCount={docContent.likeCount ?? 0} />
-          )}
+          <div className="flex items-center gap-3">
+            {docContent?.externalUrl && (
+              <a
+                href={docContent.externalUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-primary hover:underline"
+              >
+                <ExternalLink className="w-4 h-4" />
+                查看原文
+              </a>
+            )}
+<div className="flex items-center gap-3">
+            {docContent?.externalUrl && (
+              <a
+                href={docContent.externalUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm text-slate-600 hover:text-primary transition-colors"
+              >
+                <ExternalLink className="w-4 h-4" />
+                查看原文
+              </a>
+            )}
+            {docContent && (
+              <LikeButton contentId={docContent.id} initialCount={docContent.likeCount ?? 0} />
+            )}
+          </div>
+          </div>
         </div>
 
         <article className="bg-white rounded-2xl p-8 md:p-10 border border-slate-200 shadow-sm prose prose-slate prose-lg max-w-none prose-headings:scroll-mt-24">

@@ -35,9 +35,12 @@ export default async function DevPage() {
   const totalViews = allContent.reduce((s, c) => s + (c.viewCount ?? 0), 0);
   const totalLikes = allContent.reduce((s, c) => s + (c.likeCount ?? 0), 0);
 
-  const tipsWithDingtalk = [...tips, ...dingtalk].sort(
-    (a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
-  );
+  const tipsWithDingtalk = [...tips, ...dingtalk, ...team].sort((a, b) => {
+    const likeA = a.likeCount ?? 0;
+    const likeB = b.likeCount ?? 0;
+    if (likeB !== likeA) return likeB - likeA;
+    return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
+  });
   const tipCards = tipsWithDingtalk.slice(0, 4);
   const editorItems = editors.slice(0, 4);
   const teamShares = team.slice(0, 3);
@@ -73,7 +76,7 @@ export default async function DevPage() {
             <div className="space-y-8">
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-medium text-slate-800">热门研发技巧</h3>
+                  <h3 className="text-lg font-medium text-slate-800">热门分享</h3>
                   <Link href="/kb?cat=tips" className="text-primary text-sm font-medium">
                     查看全部 →
                   </Link>

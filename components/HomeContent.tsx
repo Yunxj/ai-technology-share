@@ -235,7 +235,7 @@ export default function HomeContent({
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-7 my-8">
         <div className="lg:col-span-2 space-y-6">
-          {/* 1. 热门研发技巧 */}
+          {/* 1. 热门分享 */}
           <LiveTipCards initialTipCards={tipCards} />
 
           {/* 2. 研发AI知识库 */}

@@ -60,9 +60,12 @@ export default async function HomePage() {
     allContent.map((c) => c.author).filter((a): a is string => Boolean(a))
   ).size;
 
-  const tipsWithDingtalk = [...tips, ...dingtalk].sort(
-    (a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
-  );
+  const tipsWithDingtalk = [...tips, ...dingtalk, ...team].sort((a, b) => {
+    const likeA = a.likeCount ?? 0;
+    const likeB = b.likeCount ?? 0;
+    if (likeB !== likeA) return likeB - likeA;
+    return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
+  });
 
   const token = await getAdminToken();
   const isLoggedIn = verifyAdmin(token);

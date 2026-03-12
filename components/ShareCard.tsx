@@ -34,6 +34,16 @@ export default function ShareCard({ item }: { item: ContentItem }) {
     isExternal ? "border-l-4 border-l-dingtalk" : ""
   }`;
 
+  // 优先跳转到站内完整文档
+  if (item.internalHref) {
+    return (
+      <Link href={item.internalHref} className={cardClass}>
+        {content}
+      </Link>
+    );
+  }
+
+  // 仅有外链时直接跳转
   if (isExternal && item.externalUrl) {
     return (
       <a
@@ -44,14 +54,6 @@ export default function ShareCard({ item }: { item: ContentItem }) {
       >
         {content}
       </a>
-    );
-  }
-
-  if (item.internalHref) {
-    return (
-      <Link href={item.internalHref} className={cardClass}>
-        {content}
-      </Link>
     );
   }
 

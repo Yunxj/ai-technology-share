@@ -15,6 +15,45 @@
     "updatedAt": "2026-03-04T00:00:00Z",
     "sourceType": "internal",
     "pinned": true,
+    "viewCount": 3
+  },
+  {
+    "id": "team-9",
+    "type": "team",
+    "title": "Claude Code 一篇带你从入门到精通",
+    "summary": "分享人：蔡秋雯 · 本文承接《Claude Code 入门指南》，详细描述 Claude Code 的六大扩展技能，每项技能搭配实战示例，帮助掌握高级用法并落实到生产领域。",
+    "tags": [
+      "Claude Code",
+      "AI编辑器",
+      "技巧分享"
+    ],
+    "author": "蔡秋雯",
+    "shareDate": "2026-03-12",
+    "shareEvent": "分享",
+    "updatedAt": "2026-03-12T00:00:00Z",
+    "sourceType": "internal",
+    "internalHref": "/doc/claude-code-mastery",
+    "externalUrl": "https://mp.weixin.qq.com/s/v_WJC6pCK6qdN4GEMeaFDA",
+    "viewCount": 1
+  },
+  {
+    "id": "team-10",
+    "type": "team",
+    "title": "张磊的 Claude Code 使用心得",
+    "summary": "分享人：张磊 · 涵盖 AI 编程战略与培训规划、Claude Code 实战应用、MCP 工具集成、安全协作、Self-improving 闭环进化机制，含 diary/reflect 完整设计思路。",
+    "tags": [
+      "Claude Code",
+      "AI编程",
+      "Self-improving",
+      "会议分享",
+      "MCP"
+    ],
+    "author": "张磊",
+    "shareDate": "2026-03-12",
+    "shareEvent": "会议分享",
+    "updatedAt": "2026-03-12T00:00:00Z",
+    "sourceType": "internal",
+    "internalHref": "/doc/zhanglei-claude-code",
     "viewCount": 1
   },
   {

@@ -17,9 +17,13 @@ export async function GET() {
 
   const tips = allContent.filter((c) => c.type === "tips");
   const dingtalk = allContent.filter((c) => c.type === "dingtalk");
-  const tipsWithDingtalk = [...tips, ...dingtalk].sort(
-    (a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
-  );
+  const team = allContent.filter((c) => c.type === "team");
+  const tipsWithDingtalk = [...tips, ...dingtalk, ...team].sort((a, b) => {
+    const likeA = a.likeCount ?? 0;
+    const likeB = b.likeCount ?? 0;
+    if (likeB !== likeA) return likeB - likeA;
+    return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
+  });
 
   return Response.json({
     totalViews,

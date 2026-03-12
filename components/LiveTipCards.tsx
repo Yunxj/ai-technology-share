@@ -53,7 +53,7 @@ export default function LiveTipCards({ initialTipCards }: LiveTipCardsProps) {
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-xl font-semibold text-slate-900 flex items-center gap-2">
           <Lightbulb className="w-5 h-5 text-amber-500" />
-          热门研发技巧
+          热门分享
         </h2>
         <Link href="/dev" className="text-primary text-sm font-medium">
           进入研发AI →
